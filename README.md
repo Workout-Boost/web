@@ -1,6 +1,11 @@
 # Workout Boost | WEB 
 > React.js - React, Redux, React-Redux, Axios
 
+## Table of Contents
+
+- [Installation](#installation)
+- [Quick Start](#Quick-Start)
+
 ## Installation
 
 ```sh
