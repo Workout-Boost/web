@@ -5,6 +5,7 @@
 
 - [Installation](#installation)
 - [Quick Start](#Quick-Start)
+- [Author](#author)
 
 ## Installation
 
@@ -19,3 +20,7 @@ npm install
 # Start React App
 npm start
 ```
+
+## Author
+
+[BenReichwein](https://github.com/BenReichwein)
