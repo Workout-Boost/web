@@ -5,7 +5,7 @@
 
 - [Installation](#installation)
 - [Quick Start](#Quick-Start)
-- [Author](#author)
+- [Developer](#developer)
 
 ## Installation
 
@@ -21,6 +21,6 @@ npm install
 npm start
 ```
 
-## Author
+## Developer
 
-[BenReichwein](https://github.com/BenReichwein)
+* [BenReichwein](https://github.com/BenReichwein)
