@@ -1,5 +1,4 @@
 # Workout Boost | WEB 
-[verison](https://img.shields.io/badge/version-v0.0.1-blue.svg?style=flat)
 > React.js - React, Redux, React-Redux, Axios
 
 ## Installation
