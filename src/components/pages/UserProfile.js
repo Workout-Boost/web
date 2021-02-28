@@ -1,12 +1,13 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { getUsersPosts } from '../../actions';
+import { getUsersPosts, getUserInfo, createComment, deleteComment, addSaved } from '../../actions';
 
 class UserProfile extends React.Component {
   componentDidMount() {
     const { id } = this.props.match.params;
 
     this.props.getUsersPosts(id);
+    this.props.getUserInfo();
   }
 
   render() {
@@ -18,9 +19,30 @@ class UserProfile extends React.Component {
                     <ul>
                         { this.props.posts.map(post =>
                         <li key={post._id}>
-                            <label>
+                            <p>
+                                {post.username}<br/>
                                 {post.description}<br/>
-                            </label>
+                                Comments: {
+                                    post.comments.length >= 1 ?
+                                    post.comments.map(comment =>
+                                        <p key={comment._id}>
+                                            <br/>
+                                            {comment.username}<br/>
+                                            {comment.comment}
+                                            <button onClick={()=> this.props.history.push(`/userProfile/${comment.commentUid}`)}>User</button>
+                                            <button 
+                                            onClick={()=> this.props.deleteComment(comment.comment, comment.commentUid, comment.postId)} 
+                                            style={
+                                                comment.commentUid === this.props.auth.userId ? {} : {display: 'none'} &&
+                                                comment.postUid === this.props.auth.userId ? {} : {display: 'none'}}>Delete</button>
+                                        </p>
+                                    )
+                                    : <label>No Comments</label>
+                                }
+                            </p>
+                            <br/>
+                            <button onClick={()=> this.props.createComment('Test Comment', post.postUid, post._id)}>Add Test Comment</button>
+                            <button onClick={()=> this.props.addSaved(post._id)}>Save</button>
                         </li>
                         )}
                     </ul>
@@ -38,10 +60,13 @@ class UserProfile extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-    return {posts: state.post}
+    return {
+        posts: state.post,
+        auth: state.auth
+    }
 };
 
 export default connect(
   mapStateToProps,
-  { getUsersPosts }
+  { getUsersPosts, getUserInfo, createComment, deleteComment, addSaved }
 )(UserProfile);

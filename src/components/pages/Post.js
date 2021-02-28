@@ -37,12 +37,14 @@ class Post extends React.Component {
                             { this.props.posts.map(post =>
                             <li key={post._id}>
                                 <p>
+                                    {post.username}<br/>
                                     {post.description}<br/>
                                     Comments: {
                                         post.comments.length >= 1 ?
                                         post.comments.map(comment =>
                                             <p key={comment._id}>
                                                 <br/>
+                                                {comment.username}<br/>
                                                 {comment.comment}
                                                 <button onClick={()=> this.props.history.push(`/userProfile/${comment.commentUid}`)}>User</button>
                                                 <button 
