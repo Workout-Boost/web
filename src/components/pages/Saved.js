@@ -1,15 +1,16 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { getSaved, deleteSaved } from '../../actions';
+import { getSaved, deleteSaved, createComment, deleteComment, getUserInfo } from '../../actions';
 
 class Saved extends React.Component {
 
     componentDidMount = () => {
         this.props.getSaved();
+        this.props.getUserInfo();
     }
 
     render() {
-        let {posts, history} = this.props
+        let {posts, auth, history} = this.props
         if (posts.length > 0) {
             return (
                 <div>
@@ -28,6 +29,11 @@ class Saved extends React.Component {
                                                 <br/>
                                                 {comment.comment}
                                                 <button onClick={()=> history.push(`/userProfile/${comment.commentUid}`)}>User</button>
+                                                <button 
+                                                onClick={()=> this.props.deleteComment(comment.comment, comment.commentUid, comment.postId)} 
+                                                style={
+                                                    comment.commentUid === auth.userId ? {} : {display: 'none'} &&
+                                                    comment.postUid === auth.userId ? {} : {display: 'none'}}>Delete</button>
                                             </p>
                                         )
                                         : <label>No Comments</label>
@@ -36,6 +42,7 @@ class Saved extends React.Component {
                                 <br/>
                                 <button onClick={()=> this.props.deleteSaved(post._id)}>Delete</button>
                                 <button onClick={()=> history.push(`/userProfile/${post.postUid}`)}>User</button>
+                                <button onClick={()=> this.props.createComment('Test Comment', post.postUid, post._id)}>Add Test Comment</button>
                             </li>
                             )}
                         </ul>
@@ -54,11 +61,12 @@ class Saved extends React.Component {
 
 const mapStateToProps = (state) => {
     return {
-        posts: state.post
+        posts: state.post,
+        auth: state.auth
     }
 }
 
 export default connect(
   mapStateToProps,
-  { getSaved, deleteSaved }
+  { getSaved, deleteSaved, createComment, deleteComment, getUserInfo }
 )(Saved);
