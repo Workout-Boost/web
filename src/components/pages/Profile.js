@@ -39,12 +39,12 @@ class Profile extends Component {
     }
 
     render() {
-        let {shared, saved, id} = this.props.profile
+        let {shared, savedByOthers, id} = this.props.profile
         return (
         <div>
             <h2>Insights</h2>
             <p>Your Posts: {shared}</p>
-            <p>Saved By Others: {saved}</p>
+            <p>Saved By Others: {savedByOthers}</p>
             <button onClick={()=> this.props.history.push(`/userProfile/${id}`)}>View Profile</button>
             <h2>Edit Profile</h2>
             <p>Username:</p>

@@ -9,15 +9,17 @@ class Saved extends React.Component {
     }
 
     render() {
-        if (this.props.posts.length > 0) {
+        let {posts, history} = this.props
+        if (posts.length > 0) {
             return (
                 <div>
                     <div>
                         <h3>Saved Posts</h3>
                         <ul>
-                            { this.props.posts.map(post =>
+                            { posts.map(post =>
                             <li key={post._id}>
                                 <p>
+                                    {post.username}<br/>
                                     {post.description}<br/>
                                     Comments: {
                                         post.comments.length >= 1 ?
@@ -25,7 +27,7 @@ class Saved extends React.Component {
                                             <p>
                                                 <br/>
                                                 {comment.comment}
-                                                <button onClick={()=> this.props.history.push(`/userProfile/${comment.commentUid}`)}>User</button>
+                                                <button onClick={()=> history.push(`/userProfile/${comment.commentUid}`)}>User</button>
                                             </p>
                                         )
                                         : <label>No Comments</label>
@@ -33,7 +35,7 @@ class Saved extends React.Component {
                                 </p>
                                 <br/>
                                 <button onClick={()=> this.props.deleteSaved(post._id)}>Delete</button>
-                                <button onClick={()=> this.props.history.push(`/userProfile/${post.postUid}`)}>User</button>
+                                <button onClick={()=> history.push(`/userProfile/${post.postUid}`)}>User</button>
                             </li>
                             )}
                         </ul>

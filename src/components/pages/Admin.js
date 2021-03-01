@@ -7,12 +7,13 @@ class Admin extends Component {
         this.props.loadAdmin();
     }
     render() {
-        if (this.props.admin.length > 0) {
+        let {admin} = this.props
+        if (admin.length > 0) {
             return (
                 <div>
                     <h3>Users List</h3>
                     <ul>
-                        { this.props.admin.map(user =>
+                        { admin.map(user =>
                         <li key={user._id}>
                             <label>
                                 {user.username}<br/>

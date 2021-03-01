@@ -157,9 +157,10 @@ export const deleteComment = (comment, commentUid, id) => async (dispatch) => {
   })
 };
 // Add post to users saved collection
-export const addSaved = (id) => async () => {
+export const addSaved = (postId, postUid) => async () => {
   await api.post(`saved`, {
-    postId: id
+    postId,
+    postUid,
   })
   .then(res => {
     alert(res.data)

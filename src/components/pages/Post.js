@@ -28,13 +28,14 @@ class Post extends React.Component {
     }
 
     render() {
-        if (this.props.posts.length > 0) {
+        let {posts, auth, history} = this.props
+        if (posts.length > 0) {
             return (
                 <div>
                     <div>
                         <h3>Post List</h3>
                         <ul>
-                            { this.props.posts.map(post =>
+                            { posts.map(post =>
                             <li key={post._id}>
                                 <p>
                                     {post.username}<br/>
@@ -46,12 +47,12 @@ class Post extends React.Component {
                                                 <br/>
                                                 {comment.username}<br/>
                                                 {comment.comment}
-                                                <button onClick={()=> this.props.history.push(`/userProfile/${comment.commentUid}`)}>User</button>
+                                                <button onClick={()=> history.push(`/userProfile/${comment.commentUid}`)}>User</button>
                                                 <button 
                                                 onClick={()=> this.props.deleteComment(comment.comment, comment.commentUid, comment.postId)} 
                                                 style={
-                                                    comment.commentUid === this.props.auth.userId ? {} : {display: 'none'} &&
-                                                    comment.postUid === this.props.auth.userId ? {} : {display: 'none'}}>Delete</button>
+                                                    comment.commentUid === auth.userId ? {} : {display: 'none'} &&
+                                                    comment.postUid === auth.userId ? {} : {display: 'none'}}>Delete</button>
                                             </p>
                                         )
                                         : <label>No Comments</label>
@@ -59,10 +60,10 @@ class Post extends React.Component {
                                 </p>
                                 <br/>
                                 <button onClick={()=> this.props.deletePost(post._id)} style={
-                                    post.postUid === this.props.auth.userId ? {} : {display: 'none'}}>Delete</button>
-                                <button onClick={()=> this.props.history.push(`/userProfile/${post.postUid}`)}>User</button>
+                                    post.postUid === auth.userId ? {} : {display: 'none'}}>Delete</button>
+                                <button onClick={()=> history.push(`/userProfile/${post.postUid}`)}>User</button>
                                 <button onClick={()=> this.props.createComment('Test Comment', post.postUid, post._id)}>Add Test Comment</button>
-                                <button onClick={()=> this.props.addSaved(post._id)}>Save</button>
+                                <button onClick={()=> this.props.addSaved(post._id, post.postUid)}>Save</button>
                             </li>
                             )}
                         </ul>
