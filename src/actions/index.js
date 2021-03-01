@@ -72,8 +72,10 @@ export const loadProfile = () => async (dispatch) => {
 // Update profile information
 export const updateProfile = (formValues) => async () => {
   await api.patch('user/update', {
+    username: formValues.username,
     email: formValues.email,
-    password: formValues.password
+    password: formValues.password,
+    bio: formValues.bio
   })
   .then(res => {
     alert(res.data)

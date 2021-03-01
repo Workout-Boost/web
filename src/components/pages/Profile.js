@@ -9,6 +9,7 @@ class Profile extends Component {
             username: '',
             email: '',
             password: '',
+            bio: ''
         };
     }
     onSubmit = async () => {
@@ -17,7 +18,6 @@ class Profile extends Component {
             email: this.state.email, 
             password: this.state.password
         });
-        this.props.loadProfile()
     };
 
     handleInputChange = (event) => {
@@ -27,41 +27,56 @@ class Profile extends Component {
         });
     }
 
-    componentDidMount = () => {
-        this.props.loadProfile();
+    componentDidMount = async () => {
+        await this.props.loadProfile();
+        let {username, email, bio} = this.props.profile
+        this.setState({
+            username,
+            email,
+            password: '*******',
+            bio,
+        })
     }
 
     render() {
+        let {shared, saved, id} = this.props.profile
         return (
         <div>
-            <h3>Email: {this.props.profile.email}</h3>
-            <h3>Hashed Password: {this.props.profile.password}</h3>
-            <h2>Update Profile below</h2>
+            <h2>Insights</h2>
+            <p>Your Posts: {shared}</p>
+            <p>Saved By Others: {saved}</p>
+            <button onClick={()=> this.props.history.push(`/userProfile/${id}`)}>View Profile</button>
+            <h2>Edit Profile</h2>
+            <p>Username:</p>
             <input
             type="username"
             name="username"
-            placeholder="Enter Username"
             value={this.state.username}
             onChange={this.handleInputChange}
-            required
             />
+            <p>Email:</p>
             <input
             type="email"
             name="email"
-            placeholder="Enter Email"
             value={this.state.email}
             onChange={this.handleInputChange}
-            required
             />
+            <p>Password:</p>
             <input
             type="password"
             name="password"
-            placeholder="Enter Password"
             value={this.state.password}
             onChange={this.handleInputChange}
-            required
             />
-            <button onClick={this.onSubmit}>Update</button>
+            <p>Bio:</p>
+            <input
+            type="bio"
+            name="bio"
+            value={this.state.bio}
+            onChange={this.handleInputChange}
+            />
+            <br/>
+            <button onClick={this.onSubmit}>Save</button>
             <br/>
             <button onClick={()=>this.props.logout()}>Logout</button>
         </div>
