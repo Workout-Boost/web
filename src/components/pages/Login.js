@@ -29,7 +29,6 @@ class Login extends Component {
       <div>
         <h3>Login below!</h3>
         <input
-        type="email"
         name="email"
         placeholder="Enter Email"
         value={this.state.email}
@@ -37,7 +36,6 @@ class Login extends Component {
         required
         />
         <input
-        type="password"
         name="password"
         placeholder="Enter Password"
         value={this.state.password}

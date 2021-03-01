@@ -31,7 +31,6 @@ class Register extends Component {
       <div>
         <h3>Register below!</h3>
         <input
-        type="username"
         name="username"
         placeholder="Enter Username"
         value={this.state.username}
@@ -39,7 +38,6 @@ class Register extends Component {
         required
         />
         <input
-        type="email"
         name="email"
         placeholder="Enter Email"
         value={this.state.email}
@@ -47,7 +45,6 @@ class Register extends Component {
         required
         />
         <input
-        type="password"
         name="password"
         placeholder="Enter Password"
         value={this.state.password}

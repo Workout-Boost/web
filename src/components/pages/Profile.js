@@ -50,28 +50,24 @@ class Profile extends Component {
             <h2>Edit Profile</h2>
             <p>Username:</p>
             <input
-            type="username"
             name="username"
             value={this.state.username}
             onChange={this.handleInputChange}
             />
             <p>Email:</p>
             <input
-            type="email"
             name="email"
             value={this.state.email}
             onChange={this.handleInputChange}
             />
             <p>Password:</p>
             <input
-            type="password"
             name="password"
             value={this.state.password}
             onChange={this.handleInputChange}
             />
             <p>Bio:</p>
             <input
-            type="bio"
             name="bio"
             value={this.state.bio}
             onChange={this.handleInputChange}
