@@ -7,20 +7,25 @@ class Post extends React.Component {
         super(props)
         this.state = {
             description: '',
+            comment: {}
         };
-      }
-      onSubmit = () => {
+    }
+
+    onSubmit = () => {
         this.props.createPost({
-            description: this.state.description, 
+            description: this.state.description
         });
-      };
+        this.setState({
+            description: ''
+        });
+    };
     
-      handleInputChange = (event) => {
+    handleInputChange = (event) => {
         const { value, name } = event.target;
         this.setState({
-          [name]: value
+            [name]: value
         });
-      }
+    }
 
     componentDidMount = () => {
         this.props.getPost();
@@ -29,25 +34,26 @@ class Post extends React.Component {
 
     render() {
         let {posts, auth, history} = this.props
-        if (posts.length > 0) {
+        if (posts.length > 0 && auth) {
             return (
                 <div>
                     <div>
                         <h3>Post List</h3>
-                        <ul>
                             { posts.map(post =>
-                            <li key={post._id}>
-                                <p>
-                                    {post.username}<br/>
-                                    {post.description}<br/>
-                                    Comments: {
+                            <div key={post._id}>
+                                <div>
+                                    <button onClick={()=> this.props.deletePost(post._id)} style={
+                                        post.postUid === auth.userId ? {} : {display: 'none'}}>Delete</button>
+                                    <b onClick={()=> history.push(`/userProfile/${post.postUid}`)}>{post.username}</b>
+                                    <div dangerouslySetInnerHTML={{ __html: post.description }} />
+                                    <img src={post.image} style={post.image ? {width:"250px", height:"150px"} : {display:'none'}}/><br/>
+                                    {
                                         post.comments.length >= 1 ?
                                         post.comments.map(comment =>
                                             <p key={comment._id}>
+                                                Comments:
                                                 <br/>
-                                                {comment.username}<br/>
-                                                {comment.comment}
-                                                <button onClick={()=> history.push(`/userProfile/${comment.commentUid}`)}>User</button>
+                                                <b onClick={()=> history.push(`/userProfile/${comment.commentUid}`)}>{comment.username}:</b> {comment.comment}
                                                 <button 
                                                 onClick={()=> this.props.deleteComment(comment.comment, comment.commentUid, comment.postId)} 
                                                 style={
@@ -55,24 +61,31 @@ class Post extends React.Component {
                                                     comment.postUid === auth.userId ? {} : {display: 'none'}}>Delete</button>
                                             </p>
                                         )
-                                        : <label>No Comments</label>
+                                        : <p></p>
                                     }
-                                </p>
+                                </div>
                                 <br/>
-                                <button onClick={()=> this.props.deletePost(post._id)} style={
-                                    post.postUid === auth.userId ? {} : {display: 'none'}}>Delete</button>
-                                <button onClick={()=> history.push(`/userProfile/${post.postUid}`)}>User</button>
-                                <button onClick={()=> this.props.createComment('Test Comment', post.postUid, post._id)}>Add Test Comment</button>
+                                <input
+                                name="comment"
+                                placeholder="Add a comment..."
+                                value={this.state.comment[post._id]}
+                                onChange={e => {
+                                    this.setState({comment: Object.assign(this.state.comment, {[post._id]: e.target.value})})
+                                }}
+                                required
+                                />
+                                <button onClick={async ()=> {
+                                    await this.props.createComment(this.state.comment[post._id], post.postUid, post._id)
+                                    this.setState({comment: Object.assign(this.state.comment, {[post._id]: ''})})
+                                    }}>Add</button>
                                 <button onClick={()=> this.props.addSaved(post._id, post.postUid)}>Save</button>
-                            </li>
+                            </div>
                             )}
-                        </ul>
                     </div>
                     <br/>
                     <div>
                         <h3>Create a Post</h3>
                         <input
-                        type="description"
                         name="description"
                         placeholder="Enter Description"
                         value={this.state.description}
@@ -91,7 +104,6 @@ class Post extends React.Component {
                     <div>
                         <h3>Create a Post</h3>
                         <input
-                        type="description"
                         name="description"
                         placeholder="Enter Description"
                         value={this.state.description}

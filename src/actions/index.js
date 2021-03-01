@@ -128,7 +128,7 @@ export const createComment = (comment, postUid, id) => async (dispatch) => {
     postId: id,
     comment
   })
-  .then(async (res) => {
+  .then(res => {
     dispatch({ type: GET_POST, payload: res.data});
   })
   .catch(err => {
