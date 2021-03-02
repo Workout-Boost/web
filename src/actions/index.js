@@ -121,6 +121,12 @@ export const deletePost = (id) => async (dispatch) => {
     alert(err.response.data)
   })
 };
+// Get posts within a category
+export const getCategory = (category) => async (dispatch) => {
+  const response = await api.get(`posts/category/${category}`)
+
+  dispatch({ type: GET_POST, payload: response.data});
+};
 // Comment on a post
 export const createComment = (comment, postUid, id) => async (dispatch) => {
   await api.post(`posts/comment/${id}`, {

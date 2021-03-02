@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { createPost, getPost, deletePost, createComment, deleteComment, addSaved, getUserInfo } from '../../actions';
+import { createPost, getPost, deletePost, getCategory, createComment, deleteComment, addSaved, getUserInfo } from '../../actions';
 
 class Post extends React.Component {
     constructor(props) {
@@ -38,6 +38,10 @@ class Post extends React.Component {
             return (
                 <div>
                     <div>
+                        <button onClick={()=> this.props.getPost()}>All</button>
+                        <button onClick={()=> this.props.getCategory('Upper')}>Upper</button>
+                        <button onClick={()=> this.props.getCategory('Lower')}>Lower</button>
+                        <button onClick={()=> this.props.getCategory('Nutrition')}>Nutrition</button>
                         <h3>Post List</h3>
                             { posts.map(post =>
                             <div key={post._id}>
@@ -127,5 +131,5 @@ const mapStateToProps = (state) => {
 
 export default connect(
   mapStateToProps,
-  { createPost, getPost, deletePost, createComment, deleteComment, addSaved, getUserInfo }
+  { createPost, getPost, deletePost, getCategory, createComment, deleteComment, addSaved, getUserInfo }
 )(Post);
