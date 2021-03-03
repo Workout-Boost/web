@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { createPost, getPost, deletePost, getKeyword, createComment, deleteComment, addSaved, getUserInfo } from '../../actions';
 
-class Post extends React.Component {
+class Home extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -35,7 +35,7 @@ class Post extends React.Component {
 
     render() {
         let {posts, auth, history} = this.props
-        if (posts.length > 0 && auth) {
+        if (posts.length > 0) {
             return (
                 <div>
                     <div>
@@ -97,18 +97,6 @@ class Post extends React.Component {
                             </div>
                             )}
                     </div>
-                    <br/>
-                    <div>
-                        <h3>Create a Post</h3>
-                        <input
-                        name="description"
-                        placeholder="Enter Description"
-                        value={this.state.description}
-                        onChange={this.handleInputChange}
-                        required
-                        />
-                        <button onClick={this.onSubmit}>Post</button>
-                    </div>
                 </div>
             )
         } else {
@@ -129,18 +117,6 @@ class Post extends React.Component {
                     required
                     />
                     <p>There's no posts to view...</p>
-                    <br/>
-                    <div>
-                        <h3>Create a Post</h3>
-                        <input
-                        name="description"
-                        placeholder="Enter Description"
-                        value={this.state.description}
-                        onChange={this.handleInputChange}
-                        required
-                        />
-                        <button onClick={this.onSubmit}>Post</button>
-                    </div>
                 </div>
             )
         }
@@ -157,4 +133,4 @@ const mapStateToProps = (state) => {
 export default connect(
   mapStateToProps,
   { createPost, getPost, deletePost, getKeyword, createComment, deleteComment, addSaved, getUserInfo }
-)(Post);
+)(Home);

@@ -7,6 +7,9 @@ export default (state = null, action) => {
         case GET_UID:
             return action.payload;
         default:
-            return state;
+            return {
+                userId: null,
+                username: null
+            };
     }
 }

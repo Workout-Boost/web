@@ -1,18 +1,30 @@
 import React, { useState } from 'react'
 import SideNav, { NavItem, NavIcon, NavText } from '@trendmicro/react-sidenav';
 import '@trendmicro/react-sidenav/dist/react-sidenav.css';
+import CreatePost from './CreatePost'
 
 export default function Header(props) {
     const [expanded, setExpanded] = useState(false)
+    const [seen, setSeen] = useState(false)
+    const toggleShare = () => {
+        setSeen(!seen)
+    }
     return (
         <React.Fragment>
+            {seen? <CreatePost toggle={toggleShare}/> : null}
             <SideNav
             style={{background: 'linear-gradient(90deg, rgb(255, 127, 60) 0%, rgb(255, 128, 0) 100%)'}}
             expanded={expanded}
             onSelect={(selected) => {
-                const to = '/' + selected;
-                props.history.push(to);
-                setExpanded(false)
+                if (selected === "post") {
+                    props.history.push('/')
+                    setExpanded(false)
+                    setSeen(true)
+                } else {
+                    const to = '/' + selected;
+                    props.history.push(to);
+                    setExpanded(false)
+                }
             }}
             onToggle={(expanded) => setExpanded(expanded)}
             >
@@ -50,7 +62,7 @@ export default function Header(props) {
                         Profile
                     </NavText>
                 </NavItem>
-                <NavItem eventKey="profile">
+                <NavItem eventKey="post">
                     <NavIcon>
                         <i className="fa fa-plus-square" style={{ fontSize: '1.75em', padding: '10px 10px 10px 10px', borderRadius:'10px', backgroundColor: 'orange' }} />
                     </NavIcon>

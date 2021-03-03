@@ -6,7 +6,7 @@ import Header from './Header'
 import Login from './pages/Login'
 import Profile from './pages/Profile'
 import UserProfile from './pages/UserProfile'
-import Post from './pages/Post'
+import Home from './pages/Home'
 import Admin from './pages/Admin'
 import Register from './pages/Register'
 import Saved from './pages/Saved'
@@ -17,7 +17,7 @@ const App = () => {
         <Header history={history}/>
         <div style={{marginLeft: '80px'}}>
           <Switch>
-            <Route path="/" exact component={Post} />
+            <Route path="/" exact component={Home} />
             <Route path="/login" exact component={Login} />
             <Route path="/register" exact component={Register} />
             <Route path="/profile" component={withAuth(Profile)} />
