@@ -1,13 +1,14 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { createPost, getPost, deletePost, getCategory, createComment, deleteComment, addSaved, getUserInfo } from '../../actions';
+import { createPost, getPost, deletePost, getKeyword, createComment, deleteComment, addSaved, getUserInfo } from '../../actions';
 
 class Post extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
             description: '',
-            comment: {}
+            comment: {},
+            keyword: ''
         };
     }
 
@@ -39,9 +40,19 @@ class Post extends React.Component {
                 <div>
                     <div>
                         <button onClick={()=> this.props.getPost()}>All</button>
-                        <button onClick={()=> this.props.getCategory('Upper')}>Upper</button>
-                        <button onClick={()=> this.props.getCategory('Lower')}>Lower</button>
-                        <button onClick={()=> this.props.getCategory('Nutrition')}>Nutrition</button>
+                        <button onClick={()=> this.props.getKeyword('Upper')}>Upper</button>
+                        <button onClick={()=> this.props.getKeyword('Lower')}>Lower</button>
+                        <button onClick={()=> this.props.getKeyword('Nutrition')}>Nutrition</button>
+                        <input
+                        name="keyword"
+                        placeholder="Keyword Search..."
+                        value={this.state.keyword}
+                        onChange={async e => {
+                            await this.setState({keyword: e.target.value})
+                            this.props.getKeyword(this.state.keyword)
+                        }}
+                        required
+                        />
                         <h3>Post List</h3>
                             { posts.map(post =>
                             <div key={post._id}>
@@ -103,6 +114,20 @@ class Post extends React.Component {
         } else {
             return (
                 <div>
+                    <button onClick={()=> this.props.getPost()}>All</button>
+                    <button onClick={()=> this.props.getKeyword('Upper')}>Upper</button>
+                    <button onClick={()=> this.props.getKeyword('Lower')}>Lower</button>
+                    <button onClick={()=> this.props.getKeyword('Nutrition')}>Nutrition</button>
+                    <input
+                    name="keyword"
+                    placeholder="Keyword Search..."
+                    value={this.state.keyword}
+                    onChange={async e => {
+                        await this.setState({keyword: e.target.value})
+                        this.props.getKeyword(this.state.keyword)
+                    }}
+                    required
+                    />
                     <p>There's no posts to view...</p>
                     <br/>
                     <div>
@@ -131,5 +156,5 @@ const mapStateToProps = (state) => {
 
 export default connect(
   mapStateToProps,
-  { createPost, getPost, deletePost, getCategory, createComment, deleteComment, addSaved, getUserInfo }
+  { createPost, getPost, deletePost, getKeyword, createComment, deleteComment, addSaved, getUserInfo }
 )(Post);

@@ -121,9 +121,9 @@ export const deletePost = (id) => async (dispatch) => {
     alert(err.response.data)
   })
 };
-// Get posts within a category
-export const getCategory = (category) => async (dispatch) => {
-  const response = await api.get(`posts/category/${category}`)
+// Get posts that include a keyword
+export const getKeyword = (keyword) => async (dispatch) => {
+  const response = await api.get(`posts/keyword/${keyword}`)
 
   dispatch({ type: GET_POST, payload: response.data});
 };

@@ -1,9 +1,8 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { Router, Route, Switch } from 'react-router-dom';
-import Header from './Header';
 import history from '../history';
 import withAuth from './withAuth'
-import Home from './pages/Home'
+import Header from './Header'
 import Login from './pages/Login'
 import Profile from './pages/Profile'
 import UserProfile from './pages/UserProfile'
@@ -14,13 +13,11 @@ import Saved from './pages/Saved'
 
 const App = () => {
   return (
-    <div className="ui container">
       <Router history={history}>
-        <div>
-          <Header />
+        <Header history={history}/>
+        <div style={{marginLeft: '80px'}}>
           <Switch>
-            <Route path="/" exact component={Home} />
-            <Route path="/post" exact component={Post} />
+            <Route path="/" exact component={Post} />
             <Route path="/login" exact component={Login} />
             <Route path="/register" exact component={Register} />
             <Route path="/profile" component={withAuth(Profile)} />
@@ -30,7 +27,6 @@ const App = () => {
           </Switch>
         </div>
       </Router>
-    </div>
   );
 };
 
