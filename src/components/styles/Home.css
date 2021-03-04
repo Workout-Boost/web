@@ -24,10 +24,6 @@
     border-radius: 10px;
 }
 
-.hr {
-    border-top: 1px solid #808080;
-}
-
 .close {
     position: relative;
     margin-top: 10px;
@@ -75,4 +71,114 @@ textarea[name="description"] {
     background: white;
     color: #FF8F4D;
     transition: 250ms;
+}
+
+.postContainer {
+    overflow-y: scroll;
+    overflow-x: hidden;
+    border-left: 2px solid #a0a0a0;
+    height: 100vh;
+}
+
+.dropbtn {
+    background: linear-gradient(90deg, rgb(255, 128, 0) 0%, rgba(255, 128, 0 ,1) 100%);
+    color: white;
+    padding: 16px;
+    margin-top: 2px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    border-top-width: 1px;
+    border-color: rgb(255, 128, 0);
+    box-shadow: 0 4px 8px 0 rgba(0, 0,
+    0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-content button {
+    color: black;
+    padding: 12px 67px;
+    background-color: transparent;
+    width: 100%;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content button:hover {
+    background-color: whitesmoke;
+    color: #FF8F4D;
+    cursor: pointer;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown:hover .dropbtn {
+    background: #FF8F5D;
+}
+
+input[name="keyword"] {
+    width: 20%;
+    padding: 12px 20px;
+    margin: 8px 10px;
+    display: inline-block;
+    border: 2px solid #a0a0a0;
+    box-sizing: border-box;
+    border-radius: 5px;
+}
+
+.postTitle {
+    color: #FF8F4D;
+    cursor: pointer;
+    font-size: 22px;
+    margin-left: 5px;
+}
+
+.postDelete {
+    color: orange;
+    background-color: transparent;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+    text-decoration: none;
+}
+
+.postDelete:hover {
+    font-size: 20px
+}
+
+.postAvatar {
+    width: 40px;
+    height: 40px;
+    background: #ffa672;
+    color: white;
+    border-radius: 50%;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+    margin-left: 10px;
+}
+
+.postDesc {
+    margin-left: 55px;
+    font-size: 16px;
 }
