@@ -1,3 +1,6 @@
+/*
+=> Sharing post
+*/
 .share-modal {
     display: flex; 
     float: right;
@@ -72,14 +75,9 @@ textarea[name="description"] {
     color: #FF8F4D;
     transition: 250ms;
 }
-
-.postContainer {
-    overflow-y: scroll;
-    overflow-x: hidden;
-    border-left: 2px solid #a0a0a0;
-    height: 100vh;
-}
-
+/*
+=> Dropdown
+*/
 .dropbtn {
     background: linear-gradient(90deg, rgb(255, 128, 0) 0%, rgba(255, 128, 0 ,1) 100%);
     color: white;
@@ -133,18 +131,29 @@ textarea[name="description"] {
 .dropdown:hover .dropbtn {
     background: #FF8F5D;
 }
+/*
+=> Displaying post, comments and such
+*/
+.postContainer {
+    overflow-y: scroll;
+    overflow-x: hidden;
+    border-left: 2px solid #a0a0a0;
+    height: 100vh;
+}
 
 input[name="keyword"] {
     width: 20%;
+    min-width: 150px;
     padding: 12px 20px;
     margin: 8px 10px;
     display: inline-block;
+    background-color: whitesmoke;
     border: 2px solid #a0a0a0;
     box-sizing: border-box;
     border-radius: 5px;
 }
 
-.postTitle {
+.postUser {
     color: #FF8F4D;
     cursor: pointer;
     font-size: 22px;
@@ -182,3 +191,103 @@ input[name="keyword"] {
     margin-left: 55px;
     font-size: 16px;
 }
+
+input[name="comment"] {
+    min-width: 150px;
+    width: 20%;
+    padding: 12px 20px;
+    margin: 8px 10px;
+    display: inline-block;
+    border: 2px solid #a0a0a0;
+    background-color: whitesmoke;
+    box-sizing: border-box;
+    border-radius: 5px;
+}
+
+.add {
+    padding: 4px 15px;
+    border-radius: 7px;
+    background-color: #FFAE7F;
+    color: whitesmoke;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    font-size: 20px;
+}
+
+.add:hover {
+    padding: 4px 10px;
+    transition: all 0.3s ease-out;
+    background: white;
+    color: #FF8F4D;
+    transition: 250ms;
+}
+
+.commentUser {
+    color: black;
+    cursor: pointer;
+    font-size: 16px;
+    margin-left: 10px;
+}
+
+.commentDelete {
+    color: orange;
+    background-color: transparent;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+    text-decoration: none;
+}
+
+.commentText {
+    font-size: 14px;
+}
+
+.postSave {
+    color: orange;
+    background-color: transparent;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    float: right;
+    font-size: 26px;
+    text-decoration: none;
+}
+
+.postSave:hover {
+    font-size: 28px
+}
+
+.postImage {
+    max-width: 300px;
+    max-height: 250px;
+    border-radius: 7px;
+    padding: 4px;
+    background-color: #a0a0a0;
+}
+
+.hide {
+    display: none;
+}
+/*
+=> Desktop mode
+*/
+@media screen and (min-width: 1000px) {
+    .postUser {
+        font-size: 22px;
+    }
+    .postDesc {
+        font-size: 20px;
+    }
+    .postImage {
+        max-width: 500px;
+        max-height: 450px;
+    }
+    .commentUser {
+        font-size: 18px;
+    }
+    .commentText {
+        font-size: 16px;
+    }
+  }
