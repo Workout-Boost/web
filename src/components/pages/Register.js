@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import { register } from '../../actions';
+import avatar from '../assets/avatarimage.jpg'
+import "../styles/Auth.css"
 
 class Register extends Component {
   constructor(props) {
@@ -28,30 +30,38 @@ class Register extends Component {
 
   render() {
     return (
-      <div>
-        <h3>Register below!</h3>
-        <input
-        name="username"
-        placeholder="Enter Username"
-        value={this.state.username}
-        onChange={this.handleInputChange}
-        required
-        />
-        <input
-        name="email"
-        placeholder="Enter Email"
-        value={this.state.email}
-        onChange={this.handleInputChange}
-        required
-        />
-        <input
-        name="password"
-        placeholder="Enter Password"
-        value={this.state.password}
-        onChange={this.handleInputChange}
-        required
-        />
-        <button onClick={this.onSubmit}>Register</button>
+      <div className="modal">
+        <div className="imgcontainer">
+            <img src={avatar} alt="Avatar" className="avatar"/>
+        </div>
+        <div className="container">
+          <label>Username</label>
+          <input
+          name="username"
+          placeholder="Enter Username"
+          value={this.state.username}
+          onChange={this.handleInputChange}
+          required
+          />
+          <label>Email</label>
+          <input
+          name="email"
+          placeholder="Enter Email"
+          value={this.state.email}
+          onChange={this.handleInputChange}
+          required
+          />
+          <label>Password</label>
+          <input
+          type="password"
+          name="password"
+          placeholder="Enter Password"
+          value={this.state.password}
+          onChange={this.handleInputChange}
+          required
+          />
+          <button className="system" onClick={this.onSubmit}>Register</button>
+        </div>
       </div>
     )
   }

@@ -113,21 +113,28 @@ class Home extends React.Component {
         } else {
             return (
                 <div>
-                    <button onClick={()=> this.props.getPost()}>All</button>
-                    <button onClick={()=> this.props.getKeyword('Upper')}>Upper</button>
-                    <button onClick={()=> this.props.getKeyword('Lower')}>Lower</button>
-                    <button onClick={()=> this.props.getKeyword('Nutrition')}>Nutrition</button>
-                    <input
-                    name="keyword"
-                    placeholder="Keyword Search..."
-                    value={this.state.keyword}
-                    onChange={async e => {
-                        await this.setState({keyword: e.target.value})
-                        this.props.getKeyword(this.state.keyword)
-                    }}
-                    required
-                    />
-                    <p>There's no posts to view...</p>
+                    <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+                        <div className="dropdown">
+                            <button className={"dropbtn"}><i className={"fa fa-search"}/> Categories <i className={"fa fa-caret-down"}/></button>
+                            <div className={"dropdown-content"}>
+                                <button onClick={()=> this.props.getPost()}>All</button>
+                                <button onClick={()=> this.props.getKeyword('Upper')}>Upper</button>
+                                <button onClick={()=> this.props.getKeyword('Lower')}>Lower</button>
+                                <button onClick={()=> this.props.getKeyword('Nutrition')}>Nutrition</button>
+                            </div>
+                        </div>
+                        <input
+                        name="keyword"
+                        placeholder="Keyword Search..."
+                        value={this.state.keyword}
+                        onChange={async e => {
+                            await this.setState({keyword: e.target.value})
+                            this.props.getKeyword(this.state.keyword)
+                        }}
+                        required
+                        />
+                    </div>
+                    <p style={{fontSize:"20px", textAlign:"center"}}>There's no posts to view...</p>
                 </div>
             )
         }

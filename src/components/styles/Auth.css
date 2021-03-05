@@ -1,0 +1,86 @@
+.modal {
+    display: inline-block; /* Shown by default */
+    position: center; 
+    text-align: left;
+    z-index: 1; /* Sit on top */
+    margin-left: 10%;
+    top: 0;
+    width: 70%; /* Full width */
+    height: 70%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    padding-top: 30px;
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
+    border: 1px solid #888;
+    width: 80%; /* Could be more or less, depending on screen size */
+}
+
+.container {
+    padding: 16px;
+}
+
+.imgcontainer {
+    text-align: center;
+    margin: 24px 0 12px 0;
+    position: relative;
+}
+
+img.avatar {
+    width: 35%;
+    border-radius: 20%;
+}
+
+input[name=email], input[name=password], input[name=username] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+.system {
+    background-color: #FF8000;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0,
+    0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.system:hover {
+    background: #FF8F5D;
+}
+
+span.register {
+    float: right;
+    font-size: 18px;
+    padding-top: 10px;
+    text-decoration: #FF6347;
+}
+
+.registerbtn {
+    float: right;
+    padding-left: 10px;
+    font-size: 20px;
+    color: #FF6347;
+    background: none;
+    outline: none;
+    border: none;
+    text-decoration: underline;
+}
+
+.registerbtn:hover {
+    text-decoration: none;
+}
+
+.container label {
+    font-size: 18px;
+}
