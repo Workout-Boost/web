@@ -1,32 +1,33 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { createPost, getPost, deletePost, getKeyword, createComment, deleteComment, addSaved, getUserInfo } from '../../actions';
+import { getPost, deletePost, getKeyword, createComment, deleteComment, addSaved, getUserInfo } from '../../actions';
 import "../styles/Posts.css"
 
 class Home extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            description: '',
             comment: {},
             keyword: ''
         };
     }
-
-    onSubmit = () => {
-        this.props.createPost({
-            description: this.state.description
-        });
-        this.setState({
-            description: ''
-        });
-    };
     
     handleInputChange = (event) => {
         const { value, name } = event.target;
         this.setState({
             [name]: value
         });
+    }
+
+    onCreateComment = async (comment, postUid, id) => {
+        this.props.createComment(comment, postUid, id)
+        await this.props.getPost();
+        this.setState({comment: Object.assign(this.state.comment, {[id]: ''})})
+    }
+
+    onDeleteComment = async (comment, commentUid, postId) => {
+        this.props.deleteComment(comment, commentUid, postId)
+        await this.props.getPost();
     }
 
     componentDidMount = () => {
@@ -80,7 +81,7 @@ class Home extends React.Component {
                                     <b className="commentUser" onClick={()=> history.push(`/userProfile/${comment.commentUid}`)}>{comment.username}: </b> 
                                     <span className="commentText">{comment.comment}</span>
                                     <button className="commentDelete"
-                                    onClick={()=> this.props.deleteComment(comment.comment, comment.commentUid, comment.postId)} 
+                                    onClick={()=> this.onDeleteComment(comment.comment, comment.commentUid, comment.postId)} 
                                     style={
                                         comment.commentUid === auth.userId ? {} : {display: 'none'} &&
                                         comment.postUid === auth.userId ? {} : {display: 'none'}}><i class="fa fa-trash"></i></button>
@@ -100,7 +101,7 @@ class Home extends React.Component {
                             required
                             />
                             <button className="add" onClick={async ()=> {
-                                await this.props.createComment(this.state.comment[post._id], post.postUid, post._id)
+                                await this.onCreateComment(this.state.comment[post._id], post.postUid, post._id)
                                 this.setState({comment: Object.assign(this.state.comment, {[post._id]: ''})})
                                 }}>Add</button>
                         </div>
@@ -150,5 +151,5 @@ const mapStateToProps = (state) => {
 
 export default connect(
   mapStateToProps,
-  { createPost, getPost, deletePost, getKeyword, createComment, deleteComment, addSaved, getUserInfo }
+  { getPost, deletePost, getKeyword, createComment, deleteComment, addSaved, getUserInfo }
 )(Home);

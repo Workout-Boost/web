@@ -251,7 +251,7 @@ input[name="comment"] {
     border: none;
     cursor: pointer;
     float: right;
-    font-size: 26px;
+    font-size: 32px;
     text-decoration: none;
 }
 
@@ -265,6 +265,18 @@ input[name="comment"] {
     border-radius: 7px;
     padding: 4px;
     background-color: #a0a0a0;
+}
+
+.profileUser {
+    text-align: center;
+    color: #FF8F4D;
+    font-size: 30px;
+}
+
+.profileBio {
+    text-align: center;
+    color: #ffae7f;
+    font-size: 18px;
 }
 
 .hide {

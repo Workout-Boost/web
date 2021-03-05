@@ -44,7 +44,7 @@ export const login = (formValues) => () => {
   })
   .then(res => {
     if (res.status === 200)
-    history.push('/')
+    history.push('/profile')
   })
   .catch(err => {
     alert(err.response.data)
@@ -115,6 +115,7 @@ export const getPost = () => async (dispatch) => {
 export const deletePost = (id) => async (dispatch) => {
   await api.delete(`posts/${id}`)
   .then(res => {
+    alert('Post Deleted')
     dispatch({ type: GET_POST, payload: res.data});
   })
   .catch(err => {
