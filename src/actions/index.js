@@ -202,14 +202,51 @@ export const getUsersPosts = (uid) => async (dispatch) => {
 // -> Administrative Control
 //
 // Get all the accounts and their information
-export const loadAdmin = () => async (dispatch) => {
+export const adminGetUsers = () => async (dispatch) => {
   const response = await api.get('admin/users')
 
   dispatch({ type: LOAD_ADMIN, payload: response.data});
 };
 // Delete single account
-export const deleteAdmin = (id) => async (dispatch) => {
+export const adminDeleteUser = (id) => async (dispatch) => {
   const response = await api.delete(`admin/${id}`)
 
   dispatch({ type: LOAD_ADMIN, payload: response.data});
+};
+// Get all the posts
+export const adminGetPost = () => async (dispatch) => {
+  const response = await api.get('/admin/posts')
+
+  dispatch({ type: GET_POST, payload: response.data});
+};
+// Delete a single post
+export const adminDeletePost = (id) => async (dispatch) => {
+  await api.delete(`/admin/posts/${id}`)
+  .then(res => {
+    dispatch({ type: GET_POST, payload: res.data});
+  })
+  .catch(err => {
+    alert(err.response.data)
+  })
+};
+// Delete a comment
+export const adminDeleteComment = (comment, commentUid, id) => async (dispatch) => {
+  await api({
+    method: 'delete',
+    url: `/admin/posts/comment/${id}`,
+    data: {
+      commentUid,
+      postId: id,
+      comment,
+    },
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  })
+  .then(res => {
+    dispatch({ type: GET_POST, payload: res.data});
+  })
+  .catch(err=> {
+    alert(err.response.data)
+  })
 };

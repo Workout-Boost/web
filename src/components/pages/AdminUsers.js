@@ -1,10 +1,10 @@
 import { connect } from 'react-redux';
 import React, { Component } from 'react'
-import {loadAdmin, deleteAdmin} from '../../actions'
+import {adminGetUsers, adminDeleteUser} from '../../actions'
 
-class Admin extends Component {
+class AdminUsers extends Component {
     componentDidMount() {
-        this.props.loadAdmin();
+        this.props.adminGetUsers();
     }
     render() {
         let {admin} = this.props
@@ -18,10 +18,10 @@ class Admin extends Component {
                             <label>
                                 {user.username}<br/>
                                 {user.email}<br/>
-                                {user.password}<br/>
+                                {user._id}<br/>
                                 {user.createdAt}<br/>
                             </label>
-                            <button onClick={()=> this.props.deleteAdmin(user._id)}>Delete</button>
+                            <button onClick={()=> this.props.adminDeleteUser(user._id)}>Delete</button>
                         </li>
                         )}
                     </ul>
@@ -30,7 +30,7 @@ class Admin extends Component {
         } else {
             return (
                 <div>
-                    <p>There's no users to view...</p>
+                    <p>You are not authorized: email admin@workoutboost.net if you would like to be staff</p>
                 </div>
             )
         }
@@ -41,4 +41,4 @@ const mapStateToProps = (state) => {
     return {admin: state.admin}
 }
 
-export default connect(mapStateToProps, {loadAdmin, deleteAdmin})(Admin)
+export default connect(mapStateToProps, {adminGetUsers, adminDeleteUser})(AdminUsers)
