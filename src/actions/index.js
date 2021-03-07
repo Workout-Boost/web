@@ -157,6 +157,7 @@ export const deleteComment = (comment, commentUid, id) => async (dispatch) => {
     }
   })
   .then(res => {
+    alert('Comment Deleted')
     dispatch({ type: GET_POST, payload: res.data});
   })
   .catch(err=> {

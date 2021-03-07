@@ -82,7 +82,8 @@ textarea[name="description"] {
     background: linear-gradient(90deg, rgb(255, 128, 0) 0%, rgba(255, 128, 0 ,1) 100%);
     color: white;
     padding: 16px;
-    margin-top: 2px;
+    margin-top: 10px;
+    margin-bottom: 10px;
     font-size: 16px;
     cursor: pointer;
     border-radius: 5px;
@@ -185,6 +186,7 @@ input[name="keyword"] {
     cursor: pointer;
     font-size: 18px;
     margin-left: 10px;
+    margin-top: 5px;
 }
 
 .postDesc {
@@ -251,6 +253,7 @@ input[name="comment"] {
     border: none;
     cursor: pointer;
     float: right;
+    margin-right: 5px;
     font-size: 32px;
     text-decoration: none;
 }

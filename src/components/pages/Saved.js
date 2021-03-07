@@ -87,7 +87,7 @@ class Saved extends React.Component {
                                 }>Add</button>
                         </div>
                         <br/><br/>
-                        <hr style={{top: "10.39px", position: "relative", marginTop: "-15px", borderTop: "2px solid #a0a0a0"}}/>
+                        <hr style={{top: "3px", position: "relative", marginTop: "-15px", borderTop: "2px solid #a0a0a0"}}/>
                     </div>
                     )}
                 </div>
