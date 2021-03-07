@@ -47,6 +47,13 @@
   padding: 10px;
 }
 
+.landingAuth:hover {
+  transition: all 0.3s ease-out;
+  background: white;
+  color: #FF8F4D;
+  transition: 250ms;
+}
+
 .socialLink {
   background: #fdae76;
   width: 80%;

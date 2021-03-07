@@ -2,6 +2,21 @@ import React, { Component } from 'react'
 import '../styles/Landing.css'
 
 export default class Landing extends Component {
+    constructor(props) {
+        super(props)
+        this.state = {
+            words: ["Upper Body", "Lower Body", "Nutrition"],
+            word: 'Upper Body'
+        };
+    }
+
+    componentDidMount = () => {
+        let words = this.state.words
+        this.setState({
+            word: words[Math.floor(Math.random() * words.length)]
+        })
+    }
+
     render() {
         return (
             <div>
@@ -12,7 +27,7 @@ export default class Landing extends Component {
                     </svg>
                 </div>
                 <p className="landingSubTitle">I want to work on</p>
-                <h2 className="landingTitle">Upper Body</h2>
+                <h2 className="landingTitle">{this.state.word}</h2>
                 <p className="landingText">Find amazing workout routines from a wide variety of workout enthusiasts. 
                     Discover or share your workout plan!</p>
                 <div className="authContainer">
