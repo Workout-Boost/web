@@ -1,0 +1,86 @@
+.blob {
+  position: absolute;
+  top: 0;
+  left: 0;
+  fill: #FF7B7B;
+  width: 50vmax;
+  z-index: -1;
+  animation: move 10s ease-in-out infinite;
+  transform-origin: 50% 50%;
+}
+
+@keyframes move {
+  0%   { transform: scale(1)   translate(10px, -30px); }
+  38%  { transform: scale(0.8, 1) translate(80vw, 30vh) rotate(160deg); }
+  40%  { transform: scale(0.8, 1) translate(80vw, 30vh) rotate(160deg); }
+  78%  { transform: scale(1.3) translate(0vw, 50vh) rotate(-20deg); }
+  80%  { transform: scale(1.3) translate(0vw, 50vh) rotate(-20deg); }
+  100% { transform: scale(1)   translate(10px, -30px); }
+}
+
+.landingSubTitle {
+  color: white;
+  font-size: 40px;
+  margin-top: 100px;
+}
+
+.landingTitle {
+  color: white;
+  font-size: 60px;
+  padding-left: 20px;
+}
+
+.landingText {
+  color: white;
+  font-size: 25px;
+  width: 42%;
+  padding-top: 20px;
+}
+
+.landingAuth {
+  background: #fdae76;
+  margin-right: 10px;
+  font-size: 20px;
+  border: none;
+  color: white;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.socialLink {
+  background: #fdae76;
+  width: 80%;
+  margin-left: 10%;
+  margin-top: 20px;
+  font-size: 20px;
+  border: none;
+  color: white;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.socialLink:hover {
+  transition: all 0.3s ease-out;
+  background: white;
+  color: #FF8F4D;
+  transition: 250ms;
+}
+
+/*
+=> mobile mode
+*/
+@media screen and (max-width: 1000px) {
+  .landingSubTitle {
+      font-size: 20px;
+  }
+  .landingTitle {
+      font-size: 30px;
+  }
+  .landingText {
+      font-size: 18px;
+      width: 70%;
+  }
+  .landingAuth {
+      font-size: 14px;
+  }
+}

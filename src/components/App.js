@@ -11,6 +11,9 @@ import AdminUsers from './pages/AdminUsers'
 import AdminPosts from './pages/AdminPosts'
 import Register from './pages/Register'
 import Saved from './pages/Saved'
+import Landing from './pages/Landing'
+import Links from './pages/Links'
+import './styles/App.css'
 
 const App = () => {
   return (
@@ -26,6 +29,8 @@ const App = () => {
             <Route path="/saved" exact component={withAuth(Saved)} />
             <Route path="/admin/users" exact component={AdminUsers} />
             <Route path="/admin/posts" exact component={AdminPosts} />
+            <Route path="/landing" exact component={Landing} />
+            <Route path="/links" exact component={Links} />
           </Switch>
         </div>
       </Router>

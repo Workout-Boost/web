@@ -30,7 +30,7 @@ export default function Header(props) {
             >
                 <SideNav.Toggle/>
                 <SideNav.Nav defaultSelected="">
-                <NavItem>
+                <NavItem eventKey="landing">
                     <NavIcon>
                         <i className="fa fa-bolt" style={{ fontSize: '1.75em' }} />
                     </NavIcon>
