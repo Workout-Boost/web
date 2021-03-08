@@ -18,6 +18,7 @@ class AdminUsers extends Component {
                             <label>
                                 {user.username}<br/>
                                 {user.email}<br/>
+                                {user.avatar}<br/>
                                 {user._id}<br/>
                                 {user.createdAt}<br/>
                             </label>

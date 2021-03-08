@@ -37,6 +37,7 @@ class Home extends React.Component {
 
     render() {
         let {posts, auth, history} = this.props
+        console.log(posts)
         if (posts.length > 0) {
             return (
                 <div className="postContainer">
@@ -64,11 +65,11 @@ class Home extends React.Component {
                     { posts.map(post =>
                     <div key={post._id}>
                         <hr style={{borderTop: "2px solid #a0a0a0"}} />
-                        <button className="postAvatar" onClick={()=> history.push(`/userProfile/${post.postUid}`)}><i class="fa fa-bolt"></i></button>
+                        <button className="postAvatar" onClick={()=> history.push(`/userProfile/${post.postUid}`)}><i className={`fa fa-${post.avatar}`}/></button>
                         <b className="postUser" onClick={()=> history.push(`/userProfile/${post.postUid}`)}>{post.username}</b>
                         <button className="postDelete" onClick={()=> this.props.deletePost(post._id)} style={
                             post.postUid === auth.userId ? {} : {display: 'none'}}><i class="fa fa-trash"></i></button>
-                        <button className="postSave" onClick={()=> this.props.addSaved(post._id, post.postUid)}><i class="fa fa-bookmark"></i></button>
+                        <button className="postSave" onClick={()=> this.props.addSaved(post._id, post.postUid)}><i className="fa fa-bookmark"></i></button>
                         <div className="postDesc" dangerouslySetInnerHTML={{ __html: post.description }} />
                         <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
                             <img src={post.image} className={post.image ? "postImage" : "hide"}/><br/>
@@ -84,7 +85,7 @@ class Home extends React.Component {
                                     onClick={()=> this.onDeleteComment(comment.comment, comment.commentUid, comment.postId)} 
                                     style={
                                         comment.commentUid === auth.userId ? {} : {display: 'none'} &&
-                                        comment.postUid === auth.userId ? {} : {display: 'none'}}><i class="fa fa-trash"></i></button>
+                                        comment.postUid === auth.userId ? {} : {display: 'none'}}><i className="fa fa-trash"></i></button>
                                 </p>
                             )
                             : <p></p>
