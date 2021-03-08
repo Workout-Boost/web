@@ -1,8 +1,25 @@
 import { connect } from 'react-redux';
 import React, { Component } from 'react'
-import {adminGetUsers, adminDeleteUser} from '../../actions'
+import {adminGetUsers, adminDeleteUser, adminUpdateProfile} from '../../actions'
 
 class AdminUsers extends Component {
+    constructor(props) {
+        super(props)
+        this.state = {
+            username: {},
+            email: {},
+            password: {},
+            avatar: {}
+        };
+    }
+    
+    handleInputChange = (event) => {
+        const { value, name } = event.target;
+        this.setState({
+            [name]: value
+        });
+    }
+
     componentDidMount() {
         this.props.adminGetUsers();
     }
@@ -15,14 +32,48 @@ class AdminUsers extends Component {
                     <ul>
                         { admin.map(user =>
                         <li key={user._id}>
-                            <label>
-                                {user.username}<br/>
-                                {user.email}<br/>
-                                {user.avatar}<br/>
-                                {user._id}<br/>
-                                {user.createdAt}<br/>
-                            </label>
-                            <button onClick={()=> this.props.adminDeleteUser(user._id)}>Delete</button>
+                            <input
+                            name="username"
+                            placeholder={user.username}
+                            value={this.state.username[user._id]}
+                            onChange={e => {
+                                this.setState({username: Object.assign(this.state.username, {[user._id]: e.target.value})})
+                            }}
+                            required
+                            /><br/>
+                            <button onClick={()=> this.props.adminUpdateProfile("username", this.state.username[user._id], user._id)}>Update Username</button>
+                            <input
+                            name="email"
+                            placeholder={user.email}
+                            value={this.state.email[user._id]}
+                            onChange={e => {
+                                this.setState({email: Object.assign(this.state.email, {[user._id]: e.target.value})})
+                            }}
+                            required
+                            /><br/>
+                            <button onClick={()=> this.props.adminUpdateProfile("email", this.state.email[user._id], user._id)}>Update Email</button>
+                            <input
+                            name="password"
+                            placeholder={user.password}
+                            value={this.state.password[user._id]}
+                            onChange={e => {
+                                this.setState({password: Object.assign(this.state.password, {[user._id]: e.target.value})})
+                            }}
+                            required
+                            /><br/>
+                            <button onClick={()=> this.props.adminUpdateProfile("password", this.state.password[user._id], user._id)}>Update Password</button>
+                            <input
+                            name="avatar"
+                            placeholder={user.avatar}
+                            value={this.state.avatar[user._id]}
+                            onChange={e => {
+                                this.setState({avatar: Object.assign(this.state.avatar, {[user._id]: e.target.value})})
+                            }}
+                            required
+                            /><br/>
+                            <button onClick={()=> this.props.adminUpdateProfile("avatar", this.state.avatar[user._id], user._id)}>Update Avatar</button>
+                            <br/>
+                            <button onClick={()=> this.props.adminDeleteUser(user._id)}>Delete User</button>
                         </li>
                         )}
                     </ul>
@@ -42,4 +93,4 @@ const mapStateToProps = (state) => {
     return {admin: state.admin}
 }
 
-export default connect(mapStateToProps, {adminGetUsers, adminDeleteUser})(AdminUsers)
+export default connect(mapStateToProps, {adminGetUsers, adminDeleteUser, adminUpdateProfile})(AdminUsers)

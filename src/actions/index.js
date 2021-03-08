@@ -222,7 +222,7 @@ export const adminGetPost = () => async (dispatch) => {
 };
 // Delete a single post
 export const adminDeletePost = (id) => async (dispatch) => {
-  await api.delete(`/admin/posts/${id}`)
+  await api.delete(`admin/posts/${id}`)
   .then(res => {
     dispatch({ type: GET_POST, payload: res.data});
   })
@@ -234,7 +234,7 @@ export const adminDeletePost = (id) => async (dispatch) => {
 export const adminDeleteComment = (comment, commentUid, id) => async (dispatch) => {
   await api({
     method: 'delete',
-    url: `/admin/posts/comment/${id}`,
+    url: `admin/posts/comment/${id}`,
     data: {
       commentUid,
       postId: id,
@@ -248,6 +248,19 @@ export const adminDeleteComment = (comment, commentUid, id) => async (dispatch) 
     dispatch({ type: GET_POST, payload: res.data});
   })
   .catch(err=> {
+    alert(err.response.data)
+  })
+};
+// Update profile information
+export const adminUpdateProfile = (category, input, id) => async () => {
+  await api.patch(`admin/user/update/${id}`, {
+    category,
+    input
+  })
+  .then(res => {
+    alert(res.data)
+  })
+  .catch(err => {
     alert(err.response.data)
   })
 };

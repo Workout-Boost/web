@@ -37,7 +37,6 @@ class Home extends React.Component {
 
     render() {
         let {posts, auth, history} = this.props
-        console.log(posts)
         if (posts.length > 0) {
             return (
                 <div className="postContainer">
@@ -103,7 +102,6 @@ class Home extends React.Component {
                             />
                             <button className="add" onClick={async ()=> {
                                 await this.onCreateComment(this.state.comment[post._id], post.postUid, post._id)
-                                this.setState({comment: Object.assign(this.state.comment, {[post._id]: ''})})
                                 }}>Add</button>
                         </div>
                         <br/><br/>
