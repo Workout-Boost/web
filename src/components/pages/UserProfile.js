@@ -32,7 +32,19 @@ class UserProfile extends React.Component {
         if (posts.post) {
             return (
                 <div className="postContainer">
-                    <h2 className="profileUser">{posts.username}</h2>
+                    <button className="profileAvatar"><i className={`fa fa-${posts.avatar}`}/></button>
+                    <h2 className="profileUser">{posts.username}</h2><br/>
+                    {(()=> {
+                        if (posts.avatar === "shield") {
+                            return <p className="profileText"><i className={`fa fa-${posts.avatar}`}/>: Staff (Ask me for help)</p>
+                        } else if (posts.avatar === "star") {
+                            return <p className="profileText"><i className={`fa fa-${posts.avatar}`}/>: Co-Founder (Started Workout Boost)</p>
+                        } else if (posts.avatar === "heartbeat") {
+                            return <p className="profileText"><i className={`fa fa-${posts.avatar}`}/>: Verified User (trustworthy)</p>
+                        } else {
+                            return <p className="profileText"><i className={`fa fa-${posts.avatar}`}/>: Default User</p>
+                        }
+                    })()}
                     <p className="profileBio">{posts.bio}</p>
                     { posts.post.map(post =>
                     <div key={post._id}>

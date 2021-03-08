@@ -29,6 +29,12 @@ class AdminUsers extends Component {
             return (
                 <div>
                     <h3>Users List</h3>
+                    <p>
+                        Avatar List<br/>
+                        Shield (Staff)<br/>
+                        Heartbeat (Verified)<br/>
+                        Bolt (Default)<br/>
+                    </p>
                     <ul>
                         { admin.map(user =>
                         <li key={user._id}>

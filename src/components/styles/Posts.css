@@ -168,6 +168,7 @@ input[name="keyword"] {
     border: none;
     cursor: pointer;
     font-size: 18px;
+    margin-left: 5px;
     text-decoration: none;
 }
 
@@ -271,15 +272,39 @@ input[name="comment"] {
 }
 
 .profileUser {
-    text-align: center;
     color: #FF8F4D;
     font-size: 30px;
+    vertical-align:top;
+    display: inline-block;
+    margin-top: 5px;
+    margin-left: 10px;
 }
 
 .profileBio {
-    text-align: center;
     color: #ffae7f;
     font-size: 18px;
+    margin-left: 70px;
+}
+
+.profileText {
+    color: #fd7f36;
+    font-size: 16px;
+    margin-left: 70px;
+}
+
+.profileAvatar {
+    width: 50px;
+    height: 50px;
+    background: #ffa672;
+    color: #ffee00;
+    border-radius: 50%;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    font-size: 28px;
+    margin-left: 10px;
+    margin-top: 5px;
+    display: inline-block;
 }
 
 .hide {
