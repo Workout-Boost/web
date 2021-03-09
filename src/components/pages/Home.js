@@ -20,13 +20,13 @@ class Home extends React.Component {
     }
 
     onCreateComment = async (comment, postUid, id) => {
-        this.props.createComment(comment, postUid, id)
+        await this.props.createComment(comment,postUid,id)
         await this.props.getPost();
         this.setState({comment: Object.assign(this.state.comment, {[id]: ''})})
     }
 
     onDeleteComment = async (comment, commentUid, postId) => {
-        this.props.deleteComment(comment, commentUid, postId)
+        await this.props.deleteComment(comment, commentUid, postId)
         await this.props.getPost();
     }
 

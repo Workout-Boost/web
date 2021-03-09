@@ -50,6 +50,16 @@ export const login = (formValues) => () => {
     alert(err.response.data)
   })
 };
+// Completing the verification of user
+export const verification = (email) => async () => {
+  await api.post(`user/verify/${email}`)
+  .then(res => {
+    alert(res.data)
+  })
+  .catch(err => {
+    alert(err.response.data)
+  })
+};
 // Logging out of account
 export const logout = () => async () => {
   await api.get('user/logout')
@@ -129,21 +139,21 @@ export const getKeyword = (keyword) => async (dispatch) => {
   dispatch({ type: GET_POST, payload: response.data});
 };
 // Comment on a post
-export const createComment = (comment, postUid, id) => async (dispatch) => {
+export const createComment = (comment, postUid, id) => async () => {
   await api.post(`posts/comment/${id}`, {
     postUid,
     postId: id,
     comment
   })
   .then(res => {
-    dispatch({ type: GET_POST, payload: res.data});
+    alert(res.data)
   })
   .catch(err => {
     alert(err.response.data)
   })
 }
 // Delete a comment (could be from owner of post or commenter)
-export const deleteComment = (comment, commentUid, id) => async (dispatch) => {
+export const deleteComment = (comment, commentUid, id) => async () => {
   await api({
     method: 'delete',
     url: `posts/comment/${id}`,
@@ -157,8 +167,7 @@ export const deleteComment = (comment, commentUid, id) => async (dispatch) => {
     }
   })
   .then(res => {
-    alert('Comment Deleted')
-    dispatch({ type: GET_POST, payload: res.data});
+    alert(res.data)
   })
   .catch(err=> {
     alert(err.response.data)

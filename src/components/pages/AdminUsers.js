@@ -9,7 +9,8 @@ class AdminUsers extends Component {
             username: {},
             email: {},
             password: {},
-            avatar: {}
+            avatar: {},
+            verified: {}
         };
     }
     
@@ -78,6 +79,16 @@ class AdminUsers extends Component {
                             required
                             /><br/>
                             <button onClick={()=> this.props.adminUpdateProfile("avatar", this.state.avatar[user._id], user._id)}>Update Avatar</button>
+                            <input
+                            name="verified"
+                            placeholder={user.isVerified ? "true" : "false"}
+                            value={this.state.verified[user._id]}
+                            onChange={e => {
+                                this.setState({verified: Object.assign(this.state.verified, {[user._id]: e.target.value})})
+                            }}
+                            required
+                            /><br/>
+                            <button onClick={()=> this.props.adminUpdateProfile("verified", this.state.verified[user._id], user._id)}>Update Verification</button>
                             <br/>
                             <button onClick={()=> this.props.adminDeleteUser(user._id)}>Delete User</button>
                         </li>

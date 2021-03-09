@@ -33,7 +33,7 @@ img.avatar {
     border-radius: 20%;
 }
 
-input[name=email], input[name=password], input[name=username], input[name=avatar] {
+input[name=email], input[name=password], input[name=username], input[name=avatar], input[name=verified] {
     width: 100%;
     padding: 12px 20px;
     margin: 8px 0;

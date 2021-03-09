@@ -43,7 +43,6 @@ class Profile extends Component {
 
     render() {
         let {shared, savedByOthers, id} = this.props.profile
-        console.log(id)
         return (
             <div className='modal'>
                 <div className='container'>
@@ -51,7 +50,8 @@ class Profile extends Component {
                     <hr className='profileHr'/>
                     <br/>
                     <div className='container'>
-                        <label>Your Posts: <b>{shared}</b></label> <button className={"postview"} onClick={() => this.props.history.push=(`/userProfile/${id}`)}>View Profile</button>
+                        <label>Your Posts: <b>{shared} </b></label> 
+                        <button className={"postview"} onClick={()=> this.props.history.push(`/userProfile/${id}`)}>View Profile</button>
                         <br/>
                         <label>Saved By Others: <b>{savedByOthers}</b></label>
                     </div>
@@ -60,6 +60,17 @@ class Profile extends Component {
                     <div className="container">
                         <button className="profileAvatar"><i className={`fa fa-${this.state.avatar}`}/></button>
                         <h2 className="profileUser">{this.state.username}</h2> <button className={"logout"} onClick={() => this.props.logout()}>Logout</button><br/>
+                        {(()=> {
+                            if (this.state.avatar === "shield") {
+                                return <p className="userProfileText"><i className={`fa fa-${this.state.avatar}`}/>: Staff (Ask me for help)</p>
+                            } else if (this.state.avatar === "star") {
+                                return <p className="userProfileText"><i className={`fa fa-${this.state.avatar}`}/>: Co-Founder (Started Workout Boost)</p>
+                            } else if (this.state.avatar === "heartbeat") {
+                                return <p className="userProfileText"><i className={`fa fa-${this.state.avatar}`}/>: Verified User (trustworthy)</p>
+                            } else {
+                                return <p className="userProfileText"><i className={`fa fa-${this.state.avatar}`}/>: Default User</p>
+                            }
+                        })()}
                         <p className="profileBio">{this.state.bio}</p>
                         <label>Bio:</label>
                         <br/>

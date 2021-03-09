@@ -13,6 +13,7 @@ import Register from './pages/Register'
 import Saved from './pages/Saved'
 import Landing from './pages/Landing'
 import Links from './pages/Links'
+import Verify from './pages/Verify'
 import './styles/App.css'
 
 const App = () => {
@@ -31,6 +32,7 @@ const App = () => {
             <Route path="/admin/posts" exact component={AdminPosts} />
             <Route path="/landing" exact component={Landing} />
             <Route path="/links" exact component={Links} />
+            <Route path="/verify/:email" exact component={Verify} />
           </Switch>
         </div>
       </Router>
