@@ -84,3 +84,116 @@ span.register {
 .container label {
     font-size: 18px;
 }
+
+.logout {
+    background-color: orangered;
+    color: white;
+    padding: 7px;
+    position: absolute;
+    margin: 7px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 90px;
+    color: white;
+    border: none;
+    box-shadow: 0 4px 8px 0 rgba(0, 0,
+    0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.logout:hover {
+    background-color: rgb(240,80,0);
+}
+
+.pBio {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    border-radius: 1px;
+    resize: none;
+    white-space: pre-wrap;
+    overflow-wrap: break-word;
+}
+
+.profileHr {
+    width: 95%;
+    border-color: #fdb46a;
+    border-color: #fdb46a;
+}
+
+.profileTitle {
+    color: #FF8000;
+}
+
+.postview {
+    background-color: #FF8000;
+    color: white;
+    padding: 7px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 90px;
+}
+
+.postview:hover {
+    background: #FF8F5D;
+}
+
+.profileSave {
+    background-color: #FF8000;
+    font-size: 18px;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    height: 45px;
+    margin-left: 5px;
+    width: 100px;
+    margin-top: 25px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0,
+    0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.profileSave:hover {
+    background: #FF8F5D;
+}
+
+.profileUser {
+    color: #FF8F4D;
+    font-size: 22px;
+    vertical-align:top;
+    display: inline-block;
+    margin-top: 5px;
+    margin-left: 10px;
+}
+
+.profileBio {
+    color: #ffae7f;
+    font-size: 16px;
+    margin-left: 70px;
+}
+
+.profileText {
+    color: #fd7f36;
+    font-size: 16px;
+    margin-left: 70px;
+}
+
+.profileAvatar {
+    width: 50px;
+    height: 50px;
+    background: #ffa672;
+    color: #ffee00;
+    border-radius: 50%;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    font-size: 28px;
+    margin-left: 10px;
+    margin-top: 5px;
+    display: inline-block;
+}

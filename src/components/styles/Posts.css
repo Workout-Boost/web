@@ -271,7 +271,7 @@ input[name="comment"] {
     background-color: #a0a0a0;
 }
 
-.profileUser {
+.userProfileUser {
     color: #FF8F4D;
     font-size: 30px;
     vertical-align:top;
@@ -280,19 +280,19 @@ input[name="comment"] {
     margin-left: 10px;
 }
 
-.profileBio {
+.userProfileBio {
     color: #ffae7f;
     font-size: 18px;
     margin-left: 70px;
 }
 
-.profileText {
+.userProfileText {
     color: #fd7f36;
     font-size: 16px;
     margin-left: 70px;
 }
 
-.profileAvatar {
+.userProfileAvatar {
     width: 50px;
     height: 50px;
     background: #ffa672;

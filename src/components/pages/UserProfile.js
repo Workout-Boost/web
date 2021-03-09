@@ -32,20 +32,20 @@ class UserProfile extends React.Component {
         if (posts.post) {
             return (
                 <div className="postContainer">
-                    <button className="profileAvatar"><i className={`fa fa-${posts.avatar}`}/></button>
-                    <h2 className="profileUser">{posts.username}</h2><br/>
+                    <button className="userProfileAvatar"><i className={`fa fa-${posts.avatar}`}/></button>
+                    <h2 className="userProfileUser">{posts.username}</h2><br/>
                     {(()=> {
                         if (posts.avatar === "shield") {
-                            return <p className="profileText"><i className={`fa fa-${posts.avatar}`}/>: Staff (Ask me for help)</p>
+                            return <p className="userProfileText"><i className={`fa fa-${posts.avatar}`}/>: Staff (Ask me for help)</p>
                         } else if (posts.avatar === "star") {
-                            return <p className="profileText"><i className={`fa fa-${posts.avatar}`}/>: Co-Founder (Started Workout Boost)</p>
+                            return <p className="userProfileText"><i className={`fa fa-${posts.avatar}`}/>: Co-Founder (Started Workout Boost)</p>
                         } else if (posts.avatar === "heartbeat") {
-                            return <p className="profileText"><i className={`fa fa-${posts.avatar}`}/>: Verified User (trustworthy)</p>
+                            return <p className="userProfileText"><i className={`fa fa-${posts.avatar}`}/>: Verified User (trustworthy)</p>
                         } else {
-                            return <p className="profileText"><i className={`fa fa-${posts.avatar}`}/>: Default User</p>
+                            return <p className="userProfileText"><i className={`fa fa-${posts.avatar}`}/>: Default User</p>
                         }
                     })()}
-                    <p className="profileBio">{posts.bio}</p>
+                    <p className="userProfileBio">{posts.bio}</p>
                     { posts.post.map(post =>
                     <div key={post._id}>
                         <hr style={{borderTop: "2px solid #a0a0a0"}} />
