@@ -1,5 +1,7 @@
 import history from '../history'
 import api from './api'
+import Cookies from 'universal-cookie';
+const cookies = new Cookies();
 import {
     WELCOME_MESSAGE,
     LOAD_PROFILE,
@@ -27,10 +29,8 @@ export const register = (formValues) => () => {
     password: formValues.password
   })
   .then(res => {
-    if (res.status === 200) {
-      alert(res.data)
-      history.push('/login')
-    }
+    alert(res.data)
+    history.push('/login')
   })
   .catch(err => {
     alert(err.response.data)
@@ -43,11 +43,10 @@ export const login = (formValues) => () => {
     password: formValues.password
   })
   .then(res => {
-    if (res.status === 200)
+    cookies.set('token', res.data, {
+      domain: "localhost" || "workoutboost.net"
+    });
     history.push('/profile')
-  })
-  .catch(err => {
-    alert(err.response.data)
   })
 };
 // Completing the verification of user
@@ -62,16 +61,9 @@ export const verification = (email) => async () => {
 };
 // Logging out of account
 export const logout = () => async () => {
-  await api.get('user/logout')
-  .then(res => {
-    if (res.status === 200) {
-      alert('Logged out')
-      history.push('/')
-    }
-  })
-  .catch(err => {
-    alert(err.response.data)
-  })
+  cookies.remove("token");
+  alert('Logged out')
+  history.push('/')
 };
 // Loading profile information
 export const loadProfile = () => async (dispatch) => {
