@@ -71,7 +71,9 @@ export const logout = () => async () => {
 };
 // Loading profile information
 export const loadProfile = () => async (dispatch) => {
-  const response = await api.get('user/profile')
+  const response = await api.get('user/profile',{
+    params: {token: cookies.get('token')}
+  })
 
   dispatch({ type: LOAD_PROFILE, payload: response.data});
 };
@@ -92,7 +94,9 @@ export const updateProfile = (formValues) => async () => {
 };
 // Get user info from authentication
 export const getUserInfo = () => async (dispatch) => {
-  const response = await api.get(`user/getUserInfo`)
+  const response = await api.get(`user/getUserInfo`,{
+    params: {token: cookies.get('token')}
+  })
 
   dispatch({ type: GET_UID, payload: response.data});
 }
@@ -184,7 +188,9 @@ export const addSaved = (postId, postUid) => async () => {
 }
 // Get all saved post from user
 export const getSaved = () => async (dispatch) => {
-  const response = await api.get('saved')
+  const response = await api.get('saved', {
+    params: {token: cookies.get('token')}
+  })
 
   dispatch({ type: GET_POST, payload: response.data});
 };

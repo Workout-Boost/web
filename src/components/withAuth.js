@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 import api from '../actions/api'
+import Cookies from 'universal-cookie';
+const cookies = new Cookies();
 
 export default function withAuth(ComponentToProtect) {
   return class extends Component {
@@ -13,7 +15,9 @@ export default function withAuth(ComponentToProtect) {
     }
 
     componentDidMount() {
-      api.get('checkToken')
+      api.get('checkToken', {
+        params: {token: cookies.get('token')}
+      })
         .then(res => {
           if (res.status === 200) {
             this.setState({ loading: false });
