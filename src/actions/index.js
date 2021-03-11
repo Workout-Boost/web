@@ -42,11 +42,14 @@ export const login = (formValues) => () => {
     email: formValues.email,
     password: formValues.password
   })
-  .then(res => {
+  .then(async (res) => {
     cookies.set('token', res.data, {
       domain: "localhost" || "workoutboost.net"
     });
     history.push('/profile')
+  })
+  .catch(err => {
+    alert(err.response.data)
   })
 };
 // Completing the verification of user
@@ -63,6 +66,7 @@ export const verification = (email) => async () => {
 export const logout = () => async () => {
   cookies.remove("token");
   alert('Logged out')
+  window.location.reload();
   history.push('/')
 };
 // Loading profile information
