@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux';
 import '../styles/Landing.css'
 
-export default class Links extends Component {
+class Links extends Component {
     render() {
         return (
             <div>
@@ -21,3 +22,7 @@ export default class Links extends Component {
         )
     }
 }
+
+export default connect(
+    null,
+  )(Links);

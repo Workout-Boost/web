@@ -44,7 +44,7 @@ export const login = (formValues) => () => {
   })
   .then(async (res) => {
     cookies.set('token', res.data, {
-      domain: "localhost" || "workoutboost.net"
+      domain: ".workoutboost.net"
     });
     history.push('/profile')
   })

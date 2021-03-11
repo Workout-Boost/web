@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux';
 import '../styles/Landing.css'
 
-export default class Landing extends Component {
+class Landing extends Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -28,8 +29,7 @@ export default class Landing extends Component {
                 </div>
                 <p className="landingSubTitle">I want to work on</p>
                 <h2 className="landingTitle">{this.state.word}</h2>
-                <p className="landingText">Find amazing workout routines from a wide variety of workout enthusiasts. 
-                    Discover or share your workout plan!</p>
+                <p className="landingText">Find amazing workout routines and recipes from a wide variety of fitness enthusiasts. Discover or share your fitness plan!</p>
                 <div className="authContainer">
                     <button className="landingAuth" onClick={()=> this.props.history.push('/login')}>Login</button>
                     <button className='landingAuth' onClick={()=> this.props.history.push('/register')}>Sign up for free!</button>
@@ -39,3 +39,7 @@ export default class Landing extends Component {
         )
     }
 }
+
+export default connect(
+    null,
+  )(Landing);
