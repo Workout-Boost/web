@@ -25,7 +25,7 @@ export const welcomeMessage = () => async (dispatch) => {
 export const register = (formValues) => () => {
   api.post('user/register', {
     username: formValues.username,
-    email: formValues.email,
+    email: formValues.email.toLowerCase(),
     password: formValues.password
   })
   .then(res => {
@@ -39,7 +39,7 @@ export const register = (formValues) => () => {
 // logging into existing account
 export const login = (formValues) => () => {
   api.post('user/login', {
-    email: formValues.email,
+    email: formValues.email.toLowerCase(),
     password: formValues.password
   })
   .then(async (res) => {
@@ -64,7 +64,9 @@ export const verification = (email) => async () => {
 };
 // Logging out of account
 export const logout = () => async () => {
-  cookies.remove("token");
+  cookies.remove("token", {
+    domain: ".workoutboost.net"
+  });
   alert('Logged out')
   window.location.reload();
   history.push('/')

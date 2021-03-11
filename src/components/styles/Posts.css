@@ -331,3 +331,23 @@ input[name="comment"] {
         font-size: 16px;
     }
 }
+
+/*
+=> mobile mode
+*/
+@media screen and (max-width: 1000px) {
+    .dropbtn {
+        font-size: 14px;
+        padding: 12px;
+    }
+    .landingTitle {
+        font-size: 30px;
+    }
+    .landingText {
+        font-size: 18px;
+        width: 70%;
+    }
+    .landingAuth {
+        font-size: 14px;
+    }
+  }

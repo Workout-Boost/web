@@ -8,16 +8,16 @@ class Register extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      username: '',
-      email: '',
-      password: '',
+        username: '',
+        email: '',
+        password: '',
     };
   }
   onSubmit = () => {
     this.props.register({
-      username: this.state.username,
-      email: this.state.email, 
-      password: this.state.password
+        username: this.state.username,
+        email: this.state.email, 
+        password: this.state.password
     });
   };
 
@@ -35,32 +35,35 @@ class Register extends Component {
             <img src={avatar} alt="Avatar" className="avatar"/>
         </div>
         <div className="container">
-          <label>Username</label>
-          <input
-          name="username"
-          placeholder="Enter Username"
-          value={this.state.username}
-          onChange={this.handleInputChange}
-          required
-          />
-          <label>Email</label>
-          <input
-          name="email"
-          placeholder="Enter Email"
-          value={this.state.email}
-          onChange={this.handleInputChange}
-          required
-          />
-          <label>Password</label>
-          <input
-          type="password"
-          name="password"
-          placeholder="Enter Password"
-          value={this.state.password}
-          onChange={this.handleInputChange}
-          required
-          />
-          <button className="system" onClick={this.onSubmit}>Register</button>
+            <label>Username</label>
+            <input
+            name="username"
+            placeholder="Enter Username"
+            value={this.state.username}
+            onChange={this.handleInputChange}
+            required
+            />
+            <label>Email</label>
+            <input
+            name="email"
+            placeholder="Enter Email"
+            value={this.state.email}
+            onChange={this.handleInputChange}
+            required
+            />
+            <label>Password</label>
+            <input
+            type="password"
+            name="password"
+            placeholder="Enter Password"
+            value={this.state.password}
+            onChange={this.handleInputChange}
+            required
+            />
+            <button className="system" onClick={this.onSubmit}>Register</button>
+        </div>
+        <div className="container">
+            <span className="register">Already have an account? <button className="registerbtn" onClick={()=>this.props.history.push('/login')}>Login</button></span>
         </div>
       </div>
     )

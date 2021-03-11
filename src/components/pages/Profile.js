@@ -50,10 +50,10 @@ class Profile extends Component {
                     <hr className='profileHr'/>
                     <br/>
                     <div className='container'>
-                        <label>Your Posts: <b>{shared} </b></label> 
+                        <label style={{fontSize: '16px'}}>Your Posts: <b>{shared} </b></label> 
                         <button className={"postview"} onClick={()=> this.props.history.push(`/userProfile/${id}`)}>View Profile</button>
                         <br/>
-                        <label>Saved By Others: <b>{savedByOthers}</b></label>
+                        <label style={{fontSize: '16px'}}>Saved By Others: <b>{savedByOthers}</b></label>
                     </div>
                     <h2 className='profileTitle'>Edit Profile</h2>
                     <hr className='profileHr'/>
