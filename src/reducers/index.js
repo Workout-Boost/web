@@ -4,6 +4,7 @@ import profileReducer from './profileReducer'
 import postReducer from './postReducer'
 import authReducer from './authReducer'
 import adminReducer from './adminReducer'
+import followingReducer from './followingReducer'
 
 // In redux this is where we combine the states
 
@@ -12,5 +13,6 @@ export default combineReducers({
     profile: profileReducer,
     post: postReducer,
     auth: authReducer,
-    admin: adminReducer
+    admin: adminReducer,
+    following: followingReducer
 })

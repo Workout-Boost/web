@@ -1,67 +1,55 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { getUsersPosts, getUserInfo, deletePost, createComment, deleteComment, addSaved, follow, unfollow, followingWho } from '../../actions';
+import { getFollowing, createComment, deleteComment, addSaved, getUserInfo } from '../../actions';
 import "../styles/Posts.css"
 
-class UserProfile extends React.Component {
+class Home extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            comment: {}
+            comment: {},
+            keyword: ''
         };
+    }
+    
+    handleInputChange = (event) => {
+        const { value, name } = event.target;
+        this.setState({
+            [name]: value
+        });
     }
 
     onCreateComment = async (comment, postUid, id) => {
-        await this.props.createComment(comment, postUid, id)
-        await this.props.getUsersPosts(this.props.match.params.id);
+        await this.props.createComment(comment,postUid,id)
+        await this.props.getFollowing();
         this.setState({comment: Object.assign(this.state.comment, {[id]: ''})})
     }
 
     onDeleteComment = async (comment, commentUid, postId) => {
         await this.props.deleteComment(comment, commentUid, postId)
-        await this.props.getUsersPosts(this.props.match.params.id);
+        await this.props.getFollowing();
     }
 
-    componentDidMount() {
-        this.props.getUsersPosts(this.props.match.params.id);
+    componentDidMount = () => {
+        this.props.getFollowing();
         this.props.getUserInfo();
-        this.props.followingWho();
     }
 
     render() {
-        let {posts, auth, following, history} = this.props
-        if (posts.post) {
+        let {posts, auth, history} = this.props
+        if (posts.length > 0) {
             return (
                 <div className="postContainer">
-                    <button className="userProfileAvatar"><i className={`fa fa-${posts.avatar}`}/></button>
-                    <h2 className="userProfileUser">{posts.username}</h2>
-                    {(()=> {
-                        if (following.includes(posts.id)) {
-                            return <button className="unfollow" onClick={()=> this.props.unfollow(posts.id)}>Unfollow</button>
-                        } else {
-                            return <button className="follow" onClick={()=> this.props.follow(posts.id)}>Follow</button>
-                        }
-                    })()}
-                    <br/>
-                    {(()=> {
-                        if (posts.avatar === "shield") {
-                            return <p className="userProfileText"><i className={`fa fa-${posts.avatar}`}/>: Staff (Ask me for help)</p>
-                        } else if (posts.avatar === "star") {
-                            return <p className="userProfileText"><i className={`fa fa-${posts.avatar}`}/>: Co-Founder (Started Workout Boost)</p>
-                        } else if (posts.avatar === "heartbeat") {
-                            return <p className="userProfileText"><i className={`fa fa-${posts.avatar}`}/>: Verified User (trustworthy)</p>
-                        } else {
-                            return <p className="userProfileText"><i className={`fa fa-${posts.avatar}`}/>: Default User</p>
-                        }
-                    })()}
-                    <p className="userProfileBio">{posts.bio}</p>
-                    { posts.post.map(post =>
+                    <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+                        <div className="dropdown">
+                            <button className={"dropbtn"}><i className={"fa fa-user-plus"}/> Following</button>
+                        </div>
+                    </div>
+                    { posts.map(post =>
                     <div key={post._id}>
                         <hr style={{borderTop: "2px solid #a0a0a0"}} />
                         <button className="postAvatar" onClick={()=> history.push(`/userProfile/${post.postUid}`)}><i className={`fa fa-${post.avatar}`}/></button>
                         <b className="postUser" onClick={()=> history.push(`/userProfile/${post.postUid}`)}>{post.username}</b>
-                        <button className="postDelete" onClick={()=> this.props.deletePost(post._id)} style={
-                            post.postUid === auth.userId ? {} : {display: 'none'}}><i class="fa fa-trash"></i></button>
                         <button className="postSave" onClick={()=> this.props.addSaved(post._id, post.postUid)}><i className="fa fa-bookmark"></i></button>
                         <div className="postDesc" dangerouslySetInnerHTML={{ __html: post.description }} />
                         <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
@@ -96,7 +84,6 @@ class UserProfile extends React.Component {
                             />
                             <button className="add" onClick={async ()=> {
                                 await this.onCreateComment(this.state.comment[post._id], post.postUid, post._id)
-                                this.setState({comment: Object.assign(this.state.comment, {[post._id]: ''})})
                                 }}>Add</button>
                         </div>
                         <br/><br/>
@@ -109,8 +96,11 @@ class UserProfile extends React.Component {
             return (
                 <div>
                     <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
-                        <p style={{fontSize:"20px", textAlign:"center"}}>404: No user found</p>
+                        <div className="dropdown">
+                            <button className={"dropbtn"}><i className={"fa fa-user-plus"}/> No Following</button>
+                        </div>
                     </div>
+                    <p style={{fontSize:"20px", textAlign:"center"}}>You aren't following anyone. Go click a users avatar or name to get an option to follow</p>
                 </div>
             )
         }
@@ -120,12 +110,11 @@ class UserProfile extends React.Component {
 const mapStateToProps = (state) => {
     return {
         posts: state.post,
-        auth: state.auth,
-        following: state.following,
+        auth: state.auth
     }
-};
+}
 
 export default connect(
   mapStateToProps,
-  { getUsersPosts, getUserInfo, deletePost, createComment, deleteComment, addSaved, follow, unfollow, followingWho }
-)(UserProfile);
+  { getFollowing, createComment, deleteComment, addSaved, getUserInfo }
+)(Home);

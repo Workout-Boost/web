@@ -54,6 +54,14 @@ export default function Header(props) {
                         Saved
                     </NavText>
                 </NavItem>
+                <NavItem eventKey="following">
+                    <NavIcon>
+                        <i className="fa fa-user-plus" style={{ fontSize: '1.75em' }} />
+                    </NavIcon>
+                    <NavText>
+                        Following
+                    </NavText>
+                </NavItem>
                 <NavItem eventKey="profile">
                     <NavIcon>
                         <i className="fa fa-user-circle" style={{ fontSize: '1.75em' }} />

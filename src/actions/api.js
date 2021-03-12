@@ -17,4 +17,3 @@ export default axios.create({
     token: cookies.get('token') || jsCookies.get('token')
   }
 });
-console.log(cookies.get('token'))

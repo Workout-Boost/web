@@ -7,7 +7,8 @@ import {
     LOAD_PROFILE,
     GET_POST,
     GET_UID,
-    LOAD_ADMIN
+    LOAD_ADMIN,
+    FOLLOWING
 } from './types';
 //
 //-> Messages
@@ -43,7 +44,7 @@ export const login = (formValues) => () => {
     password: formValues.password
   })
   .then(async (res) => {
-    cookies.set('token', res.data, {
+    await cookies.set('token', res.data, {
       domain: ".workoutboost.net"
     });
     history.push('/profile')
@@ -64,12 +65,11 @@ export const verification = (email) => async () => {
 };
 // Logging out of account
 export const logout = () => async () => {
-  cookies.remove("token", {
+  await cookies.remove("token", {
     domain: ".workoutboost.net"
   });
   alert('Logged out')
   window.location.reload();
-  history.push('/')
 };
 // Loading profile information
 export const loadProfile = () => async (dispatch) => {
@@ -86,6 +86,8 @@ export const updateProfile = (formValues) => async () => {
     email: formValues.email,
     password: formValues.password,
     bio: formValues.bio
+  }, {
+    params: {token: cookies.get('token')}
   })
   .then(res => {
     alert(res.data)
@@ -109,6 +111,8 @@ export const getUserInfo = () => async (dispatch) => {
 export const createPost = (formValues) => async (dispatch) => {
   await api.post('posts', {
     description: formValues.description
+  }, {
+    params: {token: cookies.get('token')}
   })
   .then(res => {
     dispatch({ type: GET_POST, payload: res.data});
@@ -132,6 +136,8 @@ export const deletePost = (id) => async (dispatch) => {
   })
   .catch(err => {
     alert(err.response.data)
+  }, {
+    params: {token: cookies.get('token')}
   })
 };
 // Get posts that include a keyword
@@ -146,6 +152,8 @@ export const createComment = (comment, postUid, id) => async () => {
     postUid,
     postId: id,
     comment
+  }, {
+    params: {token: cookies.get('token')}
   })
   .then(res => {
     alert(res.data)
@@ -180,6 +188,8 @@ export const addSaved = (postId, postUid) => async () => {
   await api.post(`saved`, {
     postId,
     postUid,
+  }, {
+    params: {token: cookies.get('token')}
   })
   .then(res => {
     alert(res.data)
@@ -211,6 +221,49 @@ export const getUsersPosts = (uid) => async (dispatch) => {
   const response = await api.get(`userPosts/${uid}`)
 
   dispatch({ type: GET_POST, payload: response.data});
+}
+//
+// -> Following Users
+//
+// Follow User
+export const follow = (userId) => async (dispatch) => {
+  await api.post(`following`, {
+    userId,
+  }, {
+    params: {token: cookies.get('token')}
+  })
+  .then(res => {
+    dispatch({ type: FOLLOWING, payload: res.data});
+  })
+  .catch(err=> {
+    alert(err.response.data)
+  })
+}
+// Get all posts from followed user
+export const getFollowing = () => async (dispatch) => {
+  const response = await api.get('following', {
+    params: {token: cookies.get('token')}
+  })
+
+  dispatch({ type: GET_POST, payload: response.data});
+};
+// Check who the user is following
+export const followingWho = () => async (dispatch) => {
+  const response = await api.get('followingWho', {
+    params: {token: cookies.get('token')}
+  })
+
+  dispatch({ type: FOLLOWING, payload: response.data});
+};
+// unfollow user
+export const unfollow = (id) => async (dispatch) => {
+  await api.delete(`following/${id}`)
+  .then(res => {
+    dispatch({ type: FOLLOWING, payload: res.data});
+  })
+  .catch(err => {
+    alert(err.response.data)
+  })
 }
 //
 // -> Administrative Control

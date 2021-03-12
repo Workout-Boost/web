@@ -2,7 +2,6 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { getSaved, deleteSaved, createComment, deleteComment, getUserInfo } from '../../actions';
 import '../styles/Posts.css'
-import "../styles/Posts.css"
 
 class Saved extends React.Component {
     constructor(props) {
@@ -41,7 +40,7 @@ class Saved extends React.Component {
             return (
                 <div className="postContainer">
                     <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
-                    <div className="dropdown">
+                        <div className="dropdown">
                             <button className={"dropbtn"}><i className={"fa fa-bookmark"}/> Saved</button>
                         </div>
                     </div>

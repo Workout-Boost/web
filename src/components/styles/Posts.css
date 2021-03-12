@@ -276,7 +276,7 @@ input[name="comment"] {
     font-size: 30px;
     vertical-align:top;
     display: inline-block;
-    margin-top: 5px;
+    margin-top: 12px;
     margin-left: 10px;
 }
 
@@ -305,6 +305,36 @@ input[name="comment"] {
     margin-left: 10px;
     margin-top: 5px;
     display: inline-block;
+}
+
+.follow {
+    background-color: #FF8000;
+    color: white;
+    padding: 7px;
+    margin: 0 5px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 90px;
+}
+
+.follow:hover {
+    background: #FF8F5D;
+}
+
+.unfollow {
+    background: white;
+    color: #FF8F4D;
+    padding: 7px;
+    margin: 0 5px;
+    border: 1px solid #FF8F4D;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 90px;
+}
+
+.unfollow:hover {
+    background: whitesmoke;
 }
 
 .hide {
