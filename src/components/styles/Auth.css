@@ -33,7 +33,7 @@ img.avatar {
     border-radius: 20%;
 }
 
-input[name=email], input[name=password], input[name=username], input[name=avatar], input[name=verified] {
+input[name=email], input[name=password], input[name=username], input[name=avatar], input[name=verified], input[name=code] {
     width: 100%;
     padding: 12px 20px;
     margin: 8px 0;
@@ -58,6 +58,24 @@ input[name=email], input[name=password], input[name=username], input[name=avatar
 .system:hover {
     background: #FF8F5D;
 }
+
+.forgotpass {
+    background-color: #FF8000;
+    color: white;
+    padding: 7px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 20%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0,
+    0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.forgotpass:hover {
+    background: #FF8F5D;
+}
+
 
 span.register {
     float: right;
@@ -197,3 +215,29 @@ span.register {
     margin-top: 5px;
     display: inline-block;
 }
+
+/*
+=> mobile mode
+*/
+@media screen and (max-width: 1000px) {
+    .forgotpass {
+        display: block;
+        width: 150px;
+    }
+    span.register {
+        display: block;
+        float: left;
+        font-size: 16px;
+    }
+    .registerbtn {
+        display: block;
+        float: right;
+        font-size: 16px;
+    }
+    .system {
+        display: table;
+    }
+    img.avatar {
+        width: 50%;
+    }
+  }

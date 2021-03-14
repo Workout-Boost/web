@@ -96,6 +96,30 @@ export const updateProfile = (formValues) => async () => {
     alert(err.response.data)
   })
 };
+// Forgot Password
+export const forgotPassword = (email) => async () => {
+  await api.get(`user/forgotPass/${email}`)
+  .then(res => {
+    alert(res.data)
+  })
+  .catch(err => {
+    alert(err.response.data)
+  })
+}
+// Update profile information
+export const updatePassword = (form) => async () => {
+  await api.post(`user/updatePass/${form.email}`, {
+    code: form.code,
+    password: form.password
+  })
+  .then(res => {
+    alert(res.data)
+    history.push('/login')
+  })
+  .catch(err => {
+    alert(err.response.data)
+  })
+};
 // Get user info from authentication
 export const getUserInfo = () => async (dispatch) => {
   const response = await api.get(`user/getUserInfo`,{
@@ -129,7 +153,9 @@ export const getPost = () => async (dispatch) => {
 };
 // Delete a single post
 export const deletePost = (id) => async (dispatch) => {
-  await api.delete(`posts/${id}`)
+  await api.delete(`posts/${id}`, {
+    params: {token: cookies.get('token')}
+  })
   .then(res => {
     alert('Post Deleted')
     dispatch({ type: GET_POST, payload: res.data});
@@ -208,7 +234,9 @@ export const getSaved = () => async (dispatch) => {
 };
 // Remove a saved post from users collection
 export const deleteSaved = (id) => async (dispatch) => {
-  await api.delete(`saved/${id}`)
+  await api.delete(`saved/${id}`, {
+    params: {token: cookies.get('token')}
+  })
   .then(res => {
     dispatch({ type: GET_POST, payload: res.data});
   })

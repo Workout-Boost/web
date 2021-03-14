@@ -311,7 +311,7 @@ input[name="comment"] {
     background-color: #FF8000;
     color: white;
     padding: 7px;
-    margin: 0 5px;
+    margin: 0 7px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
@@ -326,7 +326,7 @@ input[name="comment"] {
     background: white;
     color: #FF8F4D;
     padding: 7px;
-    margin: 0 5px;
+    margin: 0 7px;
     border: 1px solid #FF8F4D;
     border-radius: 5px;
     cursor: pointer;

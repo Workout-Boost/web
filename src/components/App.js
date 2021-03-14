@@ -15,6 +15,8 @@ import Following from './pages/Following'
 import Landing from './pages/Landing'
 import Links from './pages/Links'
 import Verify from './pages/Verify'
+import ForgotPass from './pages/ForgotPass'
+import UpdatePass from './pages/UpdatePass'
 import './styles/App.css'
 
 const App = () => {
@@ -35,6 +37,8 @@ const App = () => {
             <Route path="/landing" exact component={Landing} />
             <Route path="/links" exact component={Links} />
             <Route path="/verify/:email" exact component={Verify} />
+            <Route path="/forgot-password" exact component={ForgotPass} />
+            <Route path="/update-password/:email" exact component={UpdatePass} />
           </Switch>
         </div>
       </Router>

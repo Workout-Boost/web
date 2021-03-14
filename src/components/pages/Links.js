@@ -14,6 +14,7 @@ class Links extends Component {
                 </div>
                 <button className="socialLink" onClick={()=> window.location.href="https://github.com/Workout-Boost"}><i class="fa fa-github"/> GitHub</button>
                 <button className="socialLink" onClick={()=> window.location.href="https://discord.gg/DhMvNcbs2y"}><i class="fa fa-discord"/> Discord</button>
+                <button className="socialLink" onClick={()=> window.location.href="https://www.tiktok.com/@workoutboostca?lang=en"}><i class="fa fa-tiktok"/> TikTok</button>
                 <button className="socialLink" onClick={()=> window.location.href="https://www.instagram.com/workoutboostca/"}><i class="fa fa-instagram"/> Instagram</button>
                 <button className="socialLink" onClick={()=> window.location.href="https://www.facebook.com/WorkoutBoostCA/"}><i class="fa fa-facebook"/> Facebook</button>
                 <button className="socialLink" onClick={()=> window.location.href="https://twitter.com/boostworkout"}><i class="fa fa-twitter"/> Twitter</button>

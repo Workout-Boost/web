@@ -53,6 +53,7 @@ class Login extends Component {
           <button className="system" onClick={this.onSubmit}>Login</button>
         </div>
         <div className="container">
+            <button className='forgotpass' onClick={()=> this.props.history.push('/forgot-password')}>Forgot Password?</button>
             <span className="register">Don't have account? <button className="registerbtn" onClick={()=>this.props.history.push('/register')}>Register</button></span>
         </div>
       </div>
