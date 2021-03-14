@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { getFollowing, createComment, deleteComment, addSaved, getUserInfo } from '../../actions';
 import "../styles/Posts.css"
 
-class Home extends React.Component {
+class Following extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -117,4 +117,4 @@ const mapStateToProps = (state) => {
 export default connect(
   mapStateToProps,
   { getFollowing, createComment, deleteComment, addSaved, getUserInfo }
-)(Home);
+)(Following);

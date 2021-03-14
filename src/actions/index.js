@@ -8,7 +8,7 @@ import {
     GET_POST,
     GET_UID,
     LOAD_ADMIN,
-    FOLLOWING
+    FOLLOWING,
 } from './types';
 //
 //-> Messages
@@ -285,7 +285,7 @@ export const followingWho = () => async (dispatch) => {
 };
 // unfollow user
 export const unfollow = (id) => async (dispatch) => {
-  await api.delete(`following/${id}`)
+  await api.delete(`unfollow/${id}`)
   .then(res => {
     dispatch({ type: FOLLOWING, payload: res.data});
   })
@@ -293,6 +293,22 @@ export const unfollow = (id) => async (dispatch) => {
     alert(err.response.data)
   })
 }
+// Following List
+export const followingList = () => async (dispatch) => {
+  const response = await api.get('followingList', {
+    params: {token: cookies.get('token')}
+  })
+
+  dispatch({ type: FOLLOWING, payload: response.data});
+};
+// Followers List
+export const followersList = () => async (dispatch) => {
+  const response = await api.get('followersList', {
+    params: {token: cookies.get('token')}
+  })
+
+  dispatch({ type: FOLLOWING, payload: response.data});
+};
 //
 // -> Administrative Control
 //

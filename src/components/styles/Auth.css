@@ -151,6 +151,7 @@ span.register {
     color: white;
     padding: 7px;
     margin: 8px 0;
+    margin-right: 10px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
@@ -216,6 +217,22 @@ span.register {
     display: inline-block;
 }
 
+.profileVisit {
+    background-color: #FF8000;
+    color: white;
+    padding: 7px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    float: right;
+    margin-right: 5px;
+    width: 90px;
+}
+
+.profileVisit:hover {
+    background: #FF8F5D;
+}
+
 /*
 => mobile mode
 */
@@ -227,12 +244,11 @@ span.register {
     span.register {
         display: block;
         float: left;
-        font-size: 16px;
+        font-size: 14px;
     }
     .registerbtn {
         display: block;
-        float: right;
-        font-size: 16px;
+        font-size: 14px;
     }
     .system {
         display: table;
@@ -240,4 +256,22 @@ span.register {
     img.avatar {
         width: 50%;
     }
+    .profileBio {
+        font-size: 14px;
+    }
+    .profileText {
+        font-size: 14px;
+    }
   }
+
+/*
+=> small mobile mode
+*/
+@media screen and (max-width: 1000px) {
+    .profileBio {
+        font-size: 14px;
+    }
+    .profileText {
+        font-size: 14px;
+    }
+}

@@ -50,10 +50,13 @@ class Profile extends Component {
                     <hr className='profileHr'/>
                     <br/>
                     <div className='container'>
-                        <label style={{fontSize: '16px'}}>Your Posts: <b>{shared} </b></label> 
+                        <label style={{fontSize: '15px'}}>Your Posts: <b>{shared} </b></label> 
                         <button className={"postview"} onClick={()=> this.props.history.push(`/userProfile/${id}`)}>View Profile</button>
                         <br/>
-                        <label style={{fontSize: '16px'}}>Saved By Others: <b>{savedByOthers}</b></label>
+                        <label style={{fontSize: '15px'}}>Saved By Others: <b>{savedByOthers}</b></label>
+                        <br/>
+                        <button className="postview" onClick={()=> this.props.history.push('/following-list')}>Following</button>
+                        <button className="postview" onClick={()=> this.props.history.push('/followers-list')}>Followers</button>
                     </div>
                     <h2 className='profileTitle'>Edit Profile</h2>
                     <hr className='profileHr'/>
@@ -62,13 +65,13 @@ class Profile extends Component {
                         <h2 className="profileUser">{this.state.username}</h2> <button className={"logout"} onClick={() => this.props.logout()}>Logout</button><br/>
                         {(()=> {
                             if (this.state.avatar === "shield") {
-                                return <p className="userProfileText"><i className={`fa fa-${this.state.avatar}`}/>: Staff (Ask me for help)</p>
+                                return <p className="profileText"><i className={`fa fa-${this.state.avatar}`}/>: Staff (Ask me for help)</p>
                             } else if (this.state.avatar === "star") {
-                                return <p className="userProfileText"><i className={`fa fa-${this.state.avatar}`}/>: Co-Founder (Started Workout Boost)</p>
+                                return <p className="profileText"><i className={`fa fa-${this.state.avatar}`}/>: Co-Founder (Started Workout Boost)</p>
                             } else if (this.state.avatar === "heartbeat") {
-                                return <p className="userProfileText"><i className={`fa fa-${this.state.avatar}`}/>: Verified User (trustworthy)</p>
+                                return <p className="profileText"><i className={`fa fa-${this.state.avatar}`}/>: Verified User (trustworthy)</p>
                             } else {
-                                return <p className="userProfileText"><i className={`fa fa-${this.state.avatar}`}/>: Default User</p>
+                                return <p className="profileText"><i className={`fa fa-${this.state.avatar}`}/>: Default User</p>
                             }
                         })()}
                         <p className="profileBio">{this.state.bio}</p>
