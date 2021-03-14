@@ -11,7 +11,7 @@ class FollowersList extends React.Component {
 
     render() {
         let {following, history} = this.props
-        if (following >= 1) {
+        if (following.length >= 1) {
             return (
                 <div className="postContainer">
                     <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}>

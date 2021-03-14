@@ -201,6 +201,8 @@ export const deleteComment = (comment, commentUid, id) => async () => {
     headers: {
       'Content-Type': 'application/json'
     }
+  }, {
+    params: {token: cookies.get('token')}
   })
   .then(res => {
     alert(res.data)
@@ -285,7 +287,9 @@ export const followingWho = () => async (dispatch) => {
 };
 // unfollow user
 export const unfollow = (id) => async (dispatch) => {
-  await api.delete(`unfollow/${id}`)
+  await api.delete(`unfollow/${id}`, {
+    params: {token: cookies.get('token')}
+  })
   .then(res => {
     dispatch({ type: FOLLOWING, payload: res.data});
   })
