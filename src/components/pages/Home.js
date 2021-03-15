@@ -90,7 +90,7 @@ class Home extends React.Component {
                             : <p></p>
                         }
                         <br/>
-                        <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+                        <div style={ auth ? {display: 'flex', justifyContent: 'center', alignItems: 'center'} : {display:'none'}}>
                             <input
                             name="comment"
                             placeholder="Add a comment..."

@@ -29,7 +29,8 @@ class AdminUsers extends Component {
         if (admin.length > 0) {
             return (
                 <div>
-                    <h3>Users List</h3>
+                    <h3>Users List - {admin.length}</h3>
+                    <button onClick={()=> this.props.history.push('/admin/posts')}>Posts Admin</button>
                     <p>
                         Avatar List<br/>
                         Shield (Staff)<br/>

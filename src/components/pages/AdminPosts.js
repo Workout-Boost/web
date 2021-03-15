@@ -20,6 +20,12 @@ class Home extends React.Component {
         if (posts.length > 0) {
             return (
                 <div className="postContainer">
+                    <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+                        <div className="dropdown">
+                            <button onClick={()=> this.props.history.push('/admin/users')}>Users Admin</button>
+                            <button className={"dropbtn"}><i className={"fa fa-user"}/> Admin</button>
+                        </div>
+                    </div>
                     { posts.map(post =>
                     <div key={post._id}>
                         <hr style={{borderTop: "2px solid #a0a0a0"}} />
